@@ -9,13 +9,18 @@
 \usepackage{calc} % for \heightof in \tombstone
 
 \usepackage{mathspec}
-\setmathtt[Scale=MatchLowercase]{Urbit Sans Mono TT SemiBold}
+%\setmathtt[Scale=MatchLowercase]{Urbit Sans Mono Ax SemiBold}
+\setmathtt[Scale=MatchLowercase]{UrbitSansMonoAx-SemiBold.otf} % Assuming the OTF file is in the same directory
 \usepackage[osf]{libertineRoman}
-\newfontfamily\monofont{Urbit Sans Mono TT SemiBold}[Scale=MatchLowercase]
+\newfontfamily\monofont{UrbitSansMonoAx-SemiBold.otf}[
+%\newfontfamily\monofont{Urbit Sans Mono Ax SemiBold}[
+  Scale=MatchLowercase,
+  ]
+% \setmonofont{UrbitSansMonoAx-SemiBold.otf}[Path=./]
 \renewcommand{\setmonofont}{\monofont}
 \renewcommand{\texttt}[1]{{\monofont #1}}
 % Define a new font family for small caps with FakeSlant
-\newfontfamily\slantedsmallcapsfont{Linux Libertine O}[
+\newfontfamily\slantedsmallcapsfont{Libertinus Serif}[
     FakeSlant = 0.1 % Adjust the slant amount as needed
 ]
 % Redefine \textsc to make small caps 25% larger
@@ -68,7 +73,8 @@
     breaklines=true,
     breakatwhitespace=true,
     commentstyle=\color{darkgray}\emph,
-    keywordstyle=\bfseries
+    keywordstyle=\bfseries,
+    moredelim=[is][\underline]{@}{@}
 }
 \lstdefinestyle{listingcode}{
     language=Hoon,
@@ -85,7 +91,8 @@
     breaklines=true,
     breakatwhitespace=true,
     commentstyle=\color{darkgray}\emph,
-    keywordstyle=\color{darkgray}\bfseries
+    keywordstyle=\bfseries,
+    moredelim=[is][\underline]{@}{@}
 }
 \lstdefinestyle{listingblock}{
     language=Hoon,
