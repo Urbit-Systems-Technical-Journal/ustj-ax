@@ -5,7 +5,7 @@
 \addbibresource{mss.bib}
 
 \newcommand{\authorname}{Sam Atman}
-\newcommand{\authorpatp}{\patp{wep}}
+\newcommand{\authorpatp}{\patp{barpub-tarber}}
 % https://medium.com/@djinnius/primality-and-power-5accb8553c0 ``Mine own is twelve.''
 \newcommand{\affiliation}{}
 
@@ -42,7 +42,7 @@ Group of Nocks \\ Ax:  An Algebraic Executable Ur-Machine}
 \thispagestyle{firststyle}
 
 \begin{abstract}
-Conk, the permutation group of 720 Nock machines based on the ordering of primitive opcodes 0--5, is introduced.  Ax is a specific cellular automaton for general purpose computation.  First developed as a thought experiment on a Nock-like combinator calculus, Ax seeks to build a logical order of operators in sequence, starting from the definition of a noun.  This historical document presents and explores Conk, Ax, and their ramifications for Nock-style combinator computing.
+Conk, the permutation group of 720 Nock machines based on the ordering of primitive opcodes \texttt{0}--\texttt{5}, is introduced.  Ax is a specific cellular automaton for general purpose computation (a subclass disjoint by one member from Conk).  First developed as a thought experiment on a Nock-like combinator calculus, Ax seeks to build a logical order of operators in sequence, starting from the definition of a noun.  This historical document presents and explores Conk, Ax, and their ramifications for Nock-style combinator computing.
 \end{abstract}
 
 % We will adjust page numbering in final editing.
@@ -80,7 +80,7 @@ This text specifies Ax, a cellular automaton for general purpose computation.  I
   \item  \texttt{→}  shows the steps of such a reduction. All must be completed.
   \item  \lstinline[style=inlinecode]{?}  means the reduction is undefined.
   \item  \lstinline[style=inlinecode]{:=} indicates a noun is the referent of a symbol.
-  \item  \lstinline[style=inlinecode]{+}  refers to the operation on the natural numbers, whose identity is 0.
+  \item  \lstinline[style=inlinecode]{+}  refers to the operation on the natural numbers, whose identity is \texttt{0}.
   \item  \lstinline[style=inlinecode]{~}  requires that \lstinline[style=inlinecode]{n} so defined be in the range (\lstinline[style=inlinecode]{n1..n2}), inclusive.
   \item  \lstinline[style=inlinecode]{[a b c]} → \lstinline[style=inlinecode]{[a [b c]]}
   \item  Symbols have no other semantics.
@@ -166,7 +166,7 @@ Version 61K
 
 \paragraph{Zero}
 
-\texttt{0} is the identity operator, \texttt{is}. There are two operations that are closed over the monoid of the natural numbers, addition and multiplication. Of them, multiplication is consequent. In the operation of addition, \texttt{0} returns the identity. If you have any number, you may now return it. You now have \texttt{0}, and may return it:
+\texttt{0} is the identity operator, \texttt{is}. There are two operations that are closed over the monoid of the natural numbers, addition and multiplication. Of them, multiplication is consequent. In the operation of addition, \texttt{0} returns the identity. If you have any number, you may now return it; you now have \texttt{0}:
 
 \begin{lstlisting}[style=listingcode]
 § [0 0 0] -> 0
@@ -174,7 +174,7 @@ Version 61K
 
 \paragraph{One}
 
-\texttt{1} is the increment operator, \texttt{up}, as premised in the preamble. If you have a number, and you now have 0, you may increment it. 
+\texttt{1} is the increment operator, \texttt{up}, as premised in the preamble. If you have a number, and you now have \texttt{0}, you may increment it. 
 
 \begin{lstlisting}[style=listingcode]
 § [0 0 1 0] -> 1
@@ -196,22 +196,22 @@ How many operators does it take to write an infinite loop? I am curious, without
 
 Consider that there are two ways to index: by zero, and by one. What if you want to contain the damage? Well, you could count \texttt{(0|1) (1|2) (2|3) 4 5 6}, or \texttt{(0|1) (0|1) (2|3) (3|4) 4, 5, 6}. The latter is taxing on our already strained resources. 
 
-In certain circles this difficulty is referred to as the ``Abyss". My solution to this difficulty is suggested by ancient texts but the interpretation is to my knowledge completely original. We are all fairly certain the mystery involves both \texttt{3} and \texttt{11}. Let's leave it at that for now.\footnote{\texttt{Ax} could be \texttt{2}, but \texttt{branch} could not be 3, or we would have \texttt{[2 1 3 1]}, and where did that three come from? Also, branch on address 3 is not defined in the reductions.}
+In certain circles this difficulty is referred to as the ``Abyss". My solution to this difficulty is suggested by ancient texts but the interpretation is to my knowledge completely original. We are all fairly certain the mystery involves both \texttt{3} and \texttt{11}. Let's leave it at that for now.\footnote{\texttt{Ax} could be \texttt{2}, but \texttt{branch} could not be 3, or we would have \texttt{[2 1 3 1]}, and where did that three come from? Also, branch on address \texttt{3} is not defined in the reductions.}
 
 Note that both the distributive property and \texttt{Ax} may safely be made parallel once the cell to calculate both branches is composed. Indeterminate, mutually dependant behavior may be arranged only through abuse of the \texttt{0} branch and the \texttt{put} operator, in the usual fashion. 
 
 \paragraph{Four}
 
-\texttt{4} is the \texttt{eq} operator, which returns 0 if the evaluated \texttt{cons(subject,object)} is equal and 1 if it is not, crashing on an atom.
+\texttt{4} is the \texttt{eq} operator, which returns \texttt{0} if the evaluated \texttt{cons(subject,object)} is equal and \texttt{1} if it is not, crashing on an atom.
 
-Why is \texttt{4} \texttt{eq}? Well, it's our first non-prime operator, if you accept the case that 0 and 1 are neither prime nor non prime. They have a special relationship with multiplication that makes that case plausible; certainly I was taught the primality of one, though the field would appear to have changed its mind. 
+Why is \texttt{4} \texttt{eq}? Well, it's our first non-prime operator, if you accept the case that \texttt{0} and \texttt{1} are neither prime nor non prime. They have a special relationship with multiplication that makes that case plausible; certainly I was taught the primality of one, though the field would appear to have changed its mind. 
 
 It could be \texttt{cel}, but as we'll see, \texttt{cel} should not be 4. \texttt{eq}'s expansion may be thought of as having an `even' test or a `double even' test, that is, it \texttt{if}s on \texttt{cel} (though of course, the reduction does not). If `odd', test atomic equality, if `even', apply \texttt{cel}. 
 Note that all even-numbered operators and idioms have exactly two expansions, that is, they are higher order branching. Even \texttt{put} is capable of branching, depending on implementation.
 
 \paragraph{Five}
 
-\texttt{5} is the \texttt{fz} operator, one of the raisons d'etre for Ax versus Nock.  %Note that in Plan Ax from Conk Space, 5 is \texttt{cel}. 
+\texttt{5} is the \texttt{fz} operator, one of the \emph{raisons d'être} for Ax versus Nock.  %Note that in Plan Ax from Conk Space, 5 is \texttt{cel}. 
 Fully qualified Ax machines are not deterministic, because they aren't colorblind. In addition to Black and White bits, Ax machines must supply Red bits, which are completely different because they come from an actual, high quality source of entropy. Note that, while weird, this is just as well formed as saying ``an actual, high quality source of numeric computations", in that you can just hop on the Internet and buy one. Ax machines must have both.
 
 This is why \texttt{fz} must be an operator, not a lemma. The Second Law of Thermodynamics is taken as axiomatic for our purposes; within the specification, the method of selecting on the range is deliberately left unspecified.
@@ -222,15 +222,15 @@ The demonstration Ax machine uses Pink bits, which are only pseudorandom. This i
 
 %A ternary machine would draw on nine trits of entropy, or whatever. Ax is meant to be used. 
 
-\texttt{5} has several expansions, for, among other reasons, compatibility with Hoon. Any Conk runs fine on a Xa, but for safety, we have an Ax rule that takes a \texttt{fz} result and \texttt{put}s it away, \texttt{is}ing a 0 instead, and then using the 0 to \texttt{is} the subject, turning it into a no-op. Anything \texttt{fz} \texttt{mul} \texttt{is 0} will return 0, another convenient way of ignoring entropy. Lastly, one may expand \texttt{fz} by checking \texttt{branch 0} for \texttt{1} or \texttt{0}, discarding the result in the former case; this may easily be implemented as an on-off switch for an indeterminate function.
+\texttt{5} has several expansions, for, among other reasons, compatibility with Hoon. Any Conk runs fine on a Xa, but for safety, we have an Ax rule that takes a \texttt{fz} result and \texttt{put}s it away, \texttt{is}ing a \texttt{0} instead, and then using the \texttt{0} to \texttt{is} the subject, turning it into a no-op. Anything \texttt{fz} \texttt{mul} \texttt{is 0} will return \texttt{0}, another convenient way of ignoring entropy. Lastly, one may expand \texttt{fz} by checking \texttt{branch 0} for \texttt{1} or \texttt{0}, discarding the result in the former case; this may easily be implemented as an on-off switch for an indeterminate function.
 
-Lastly, note that randomness is not mentioned in the spec. It is actually perfectly valid for \texttt{fz} to return any number in the range: you may rewind Ax and play it again, or feed it nothing but 128 in all cases, or 0, or anything else you'd like. The treatment of \texttt{5} and \texttt{branch 0} distinguishes the actual semantics of an Ax machine, as they introduce indeterminacy into the result. 
+Lastly, note that randomness is not mentioned in the spec. It is actually perfectly valid for \texttt{fz} to return any number in the range: you may rewind Ax and play it again, or feed it nothing but [1] in all cases, or \texttt{0}, or anything else you'd like. The treatment of \texttt{5} and \texttt{branch 0} distinguishes the actual semantics of an Ax machine, as they introduce indeterminacy into the result. 
 
 %Why 5? Zod, where else would you put it? 
 
 \paragraph{Six}
 
-\texttt{6} is the cell operator, \texttt{cel}. It returns 0 for a cell and 1 for an atom, as you might expect. Symbols are inspected in this case to see what kind of noun they represent. 
+\texttt{6} is the cell operator, \texttt{cel}. It returns \texttt{0} for a cell and \texttt{1} for an atom, as you might expect. Symbols are inspected in this case to see what kind of noun they represent. 
 
 %Why six?
 Well, there are two important kinds of cells in Ax, \texttt{[a b]} and \texttt{[a b c]}, as defined in the preamble. There are two groupings of six, \texttt{[[1 1] [1 1] [1 1]]} and \texttt{[[1 1 1] [1 1 1]]}. If you immediately recognize those are syntax errors, you're doing great. Happily, Ax is blessed with exactly three relevant data structures, as shown by the first three lines of the reduction: atoms and two cells, which may not be Axed, and 3 cells, which are n cells, and which may be Axed in some cases. 
@@ -279,7 +279,7 @@ What about this \texttt{put} business? Well, we like the algebraic feature of Ax
 
 We do have code with identical semantics, which seems like an odd choice if we're forsaking hints. Here's one good reason: Ax goes to great lengths to be in principle Hoon and Nock compatible. It's just respectful, and if there's to be a transition, let's ease the pain, or delay it insofar as possible.
 
-In fact, use of \texttt{put} will also not affect the semantics of your running code. If you're in some kind of compatibility mode, you may even find that the use of opcode 10 provides pleasant jet assistance to your calculations. This is not our intended use case: \texttt{put} is the other side of \texttt{branch 0}.
+In fact, use of \texttt{put} will also not affect the semantics of your running code. If you're in some kind of compatibility mode, you may even find that the use of opcode \texttt{10} provides pleasant jet assistance to your calculations. This is not our intended use case: \texttt{put} is the other side of \texttt{branch 0}.
 
 Without going into detail that will probably prove wrong, \texttt{branch 0} and \texttt{put} define address spaces ``above" and ``below" the Arc of Ax code that is executing. Nock is Hermetically sealed, which is a virtue; \texttt{branch 0} and \texttt{put} provide a formal, very low-level- mechanism for building plumbing between Ax vessels. 
 
@@ -423,7 +423,7 @@ Additionally, Zero has the property of \href{https://en.wikipedia.org/wiki/Absor
 
 \texttt{0}, or \texttt{is}, is the identity operator of the Ax automaton. It annihilates the left noun, returning the rightmost without further change.
 
-This nomination is \emph{consonant} with Zero's properties, considered in itself. This nomination allows the minimal triple to reduce to 0, which is cardinal 1 of the natural numbers, a gentle mind bend called \href{https://en.wikipedia.org/wiki/Successor_function}{zeration}.
+This nomination is \emph{consonant} with Zero's properties, considered in itself. This nomination allows the minimal triple to reduce to \texttt{0}, which is cardinal \texttt{1} of the natural numbers, a gentle mind bend called \href{https://en.wikipedia.org/wiki/Successor_function}{zeration}.
 
 Zeration is weird---I will grant you this. It is also necessary, and introduces our next ability, adding elements to a set in succession.
 
@@ -469,7 +469,7 @@ Such different creatures as the deer, trees, and coral reefs, have elements we c
 
 We now progress in our representation. Having the ability to generate all of the natural numbers, we pat our pockets, looking for a place to put them. Thing is, they get cumbersome if we just accumulate marks. The space is linear, we would prefer logarithmic, it's more compact. Binary is the simplest scheme after unary, this is why we use it.
 
-We will be treating repeatedly upon triple cells, which we should call a phrase. The root phrase, \lstinline[style=inlinecode]{§ [0 0 0]}, gives 0; here Zero is the Subject, Verb, and Object of the root phrase. The \texttt{branch} operation \emph{selects} from within the Subject, as indicated by the Object.
+We will be treating repeatedly upon triple cells, which we should call a phrase. The root phrase, \lstinline[style=inlinecode]{§ [0 0 0]}, gives \texttt{0}; here Zero is the Subject, Verb, and Object of the root phrase. The \texttt{branch} operation \emph{selects} from within the Subject, as indicated by the Object.
 
 Which brings us to the next demonstration:
 
@@ -552,11 +552,11 @@ Here we have the statement of the \texttt{up} operator. Which should be by this 
 \noindent
 At last we have returned from this excursion to explanation.
 
-As discussed, the reduction of \texttt{branch} 0 is undefined. This is one of the more philosophically weighty decisions in the Ax automaton, and bears further reflection.
+As discussed, the reduction of \texttt{branch 0} is undefined. This is one of the more philosophically weighty decisions in the Ax automaton, and bears further reflection.
 
 The property of operator \texttt{2} is that of selection. Normally this is from within the depths of the subject, which must contain all phrases necessary for the completion of the reductions specified in the object noun.
 
-1 is chosen to represent the whole of the subject. I will here switch to the binary radix. The \texttt{10} operator, the first we express with two symbols, uses the value 1 for the whole subject, 10 for the left member, and 11 for the right. This pattern then continues, recursively, into the subject noun. We take a binary string, and consume it from the big end. When we encounter a 0, we take the left branch, when we encounter a 1, the right.
+1 is chosen to represent the whole of the subject. I will here switch to the binary radix. The \texttt{10} operator, the first we express with two symbols, uses the value \texttt{1} for the whole subject, \texttt{10} for the left member, and \texttt{11} for the right. This pattern then continues, recursively, into the subject noun. We take a binary string, and consume it from the big end. When we encounter a \texttt{0}, we take the left branch, when we encounter a \texttt{1}, the right.
 
 This is obviously the correct pattern. What could be changed about it? Each mark, be it zero or one, is a selection, and we call one left and the other right. In what sense is this meaningful?
 
@@ -564,7 +564,7 @@ In the sense that text flows from left to right in Latin writing. If this were i
 %\footnote{The proton and electron, as it happens, take on opposite symbols of charge from the intuitive. The proton being the origin of an atom, it should carry the term for zero as its charge nomination. There is absolutely nothing I can do about this other than complain about it. It comes from aspects, of the group behavior of electrons, which, being larger, were observed first. It's also a bit out of scope.}
 Note that we \emph{prefer} left and right, as being legible.
 
-This pattern, in which each bit of an atom, represented in binary and consumed from the big end, with each successive bit representing the next tier of the noun, serves as explanation for why 1 is the symbol of the topmost tier of the subject, with which \texttt{branch} is ordinarily concerned. Were it otherwise, 1 and 10 would share a tier, and that is unsatisfactory.
+This pattern, in which each bit of an atom, represented in binary and consumed from the big end, with each successive bit representing the next tier of the noun, serves as explanation for why \texttt{1} is the symbol of the topmost tier of the subject, with which \texttt{branch} is ordinarily concerned. Were it otherwise, \texttt{1} and \texttt{10} would share a tier, and that is unsatisfactory.
 
 What then of Zero? Do we not need it? Why then do we number the operators from Zero in the first place?
 
@@ -608,7 +608,7 @@ This is the structural insight to which we owe Curtis Guy Yarvin our deepest res
 
 The insight that the concept of the `environment' in Lisp was a harmful impediment to imposing a proper type system and functional computation is to be deeply respected. It is what enables this automaton to perform persistence and coordination of state in a repeatable, plausible fashion.
 
-Note that \texttt{11} is consonant with the operation of taking the 1 \texttt{branch}, which is the whole of the subject, and distributing it twice across the two members of the object.
+Note that \texttt{11} is consonant with the operation of taking the \texttt{branch 1}, which is the whole of the subject, and distributing it twice across the two members of the object.
 
 Also, as an odd number, it takes a singular reduction. Lastly, it is concerned with three nouns, \texttt{a}, \texttt{b}, and \texttt{c}. We meet the first two of these these participants in the Zero reduction, one vanishing without a trace, the other carried forward. They are Axed together for the reduction of One.
 
@@ -674,7 +674,7 @@ We represent luck with the number 5. It is a coin flip, a toss of the die, a sho
 
 In short, it is necessary to fair gambling, and other conditions when an event's total contribution to a computation is to be distributed but not harmonically.
 
-This Schrödinger's bit we call `Red'. A difference between \texttt{branch} 0 and the \texttt{flip} operation is that the former may return anything at all, hopefully well-formed, while the latter must return either 0 or 1. Deriving this bit from a high-quality physical source of entropy cannot be compelled. It is highly recommended.
+This Schrödinger's bit we call `Red'. A difference between \texttt{branch 0} and the \texttt{flip} operation is that the former may return anything at all, hopefully well-formed, while the latter must return either \texttt{0} or \texttt{1}. Deriving this bit from a high-quality physical source of entropy cannot be compelled. It is highly recommended.
 
 In cryptography, Red bits derive their value from being unknown outside the computation. The simplest cryptographic scheme, the one-time pad, is simply shared entropy, XORed across the secret, consuming the entropy by contaminating it with a pattern. Although I have a question about that last part, which keeps me up at night. It should be the subject of another, shorter, and later, thesis.
 
@@ -688,11 +688,11 @@ The engineers building immense tensor math rigs for various forms of machine lea
 
 I did spend a few months insisting that \texttt{flip}, until very recently \texttt{fuzz}, be based on atomic decay, entirely, and was talked down. I do try to listen when others are speaking.}
 
-Five's cardinal connection with this action is best inferred by contemplating coordinates as zero in the identity/origin position, 1 as extension, 2 as rotation, and 3 and 4 as the repetition of extension and rotation. The group produced in this manner is thus far deterministic, in that one would call in all cases the positive and negative vectors of the extensions positive and negative, and the rotations deosil and widdershins, or dextro- and laevo-, or what have you, understanding that the head is the positive terminal; but upon reaching the fifth, third extension, which creates space as generally experienced, we are impelled to make a choice. One choice of positivity creates a right-handed structure of coordination, the other, left-handed. This chirality is therefore associated with choice, and choice's cousin, luck.
+Five's cardinal connection with this action is best inferred by contemplating coordinates as \texttt{0} in the identity/origin position, \texttt{1} as extension, \texttt{2} as rotation, and \texttt{3} and \texttt{4} as the repetition of extension and rotation. The group produced in this manner is thus far deterministic, in that one would call in all cases the positive and negative vectors of the extensions positive and negative, and the rotations deosil and widdershins, or dextro- and laevo-, or what have you, understanding that the head is the positive terminal; but upon reaching the fifth, third extension, which creates space as generally experienced, we are impelled to make a choice. One choice of positivity creates a right-handed structure of coordination, the other, left-handed. This chirality is therefore associated with choice, and choice's cousin, luck.
 
 A coin flip is a forced choice, distinguished from a free choice, which is more normal when benefits and costs are clear.
 
-We place the Red bit in the 11 position of the subject, in consonance with the odd nature of these two numbers. Also in our belief that the senseward side corresponds with the future, as novelty does as well.
+We place the Red bit in the \texttt{11} position of the subject, in consonance with the odd nature of these two numbers. Also in our belief that the senseward side corresponds with the future, as novelty does as well.
 
 There remains, axiomatically, one operation, corresponding to the third, and last possible, rotation in space.
 
@@ -757,7 +757,7 @@ Though it can't affect correctness, it is a waste of energy to calculate the unc
 
 Eight is 2 raised to the 3rd power. It is in that sense, selective distribution across only one of two objects, the other annihilated.
 
-The decision to use a true Boolean, refusing to reduce an \texttt{8} which does not resolve \texttt{§ [a b]} as either a 1 or 0, was ultimately guided by the low-ordering instinct. We don't yet have a test of relative atomic order, and when we do, it's not a hard problem to make that itself return 0 or 1.
+The decision to use a true Boolean, refusing to reduce an \texttt{8} which does not resolve \texttt{§ [a b]} as either a \texttt{1} or \texttt{0}, was ultimately guided by the low-ordering instinct. We don't yet have a test of relative atomic order, and when we do, it's not a hard problem to make that itself return \texttt{0} or \texttt{1}.
 
 The other Idioms are written in the macro form, simply because this is the more eloquent way to express their action. Writing a macro for 8 is good exercise for the interested Reader.
 
@@ -825,10 +825,10 @@ What then do we wish for Ten? Let us view it:
 \end{lstlisting}
 
 \noindent
-We see that the first just annihilates \texttt{b}. It's like the reverse of \texttt{0}, which is pleasant, as the second place in the decimal system where the Zero appears.\footnote{In binary it is \texttt{1010}, which is pretty neat actually, it's like \texttt{10} is O-10, if a Japanese-`Arabic' (Hindu) construction may be indulged. \emph{Oh-ten-sei}.}  As is proper to any operation ending in 0, it has two reductions. The second does \texttt{§ [b c]} and discards it, moving on to \texttt{§ [a d]}. So what's useful about this? This could cause a side-effect, like printing a variable.
+We see that the first just annihilates \texttt{b}. It's like the reverse of \texttt{0}, which is pleasant, as the second place in the decimal system where the Zero appears.\footnote{In binary it is \texttt{1010}, which is pretty neat actually, it's like \texttt{10} is O-10, if a Japanese-`Arabic' (Hindu) construction may be indulged. \emph{Oh-ten-sei}.}  As is proper to any operation ending in \texttt{0}, it has two reductions. The second does \texttt{§ [b c]} and discards it, moving on to \texttt{§ [a d]}. So what's useful about this? This could cause a side-effect, like printing a variable.
 
 \sloppy
-I would think it more proper to make more use of Ten, the \texttt{toss} operator. In particular I might want \texttt{b} in the first reduction to resolve undefined behavior along branch 0 of another Ax computation, building thereby an Axtor model of cooperative behavior between small, well-defined, predictable \mbox{computers}.\footnote{The 10th Sephiroth is Malkuth, the Kingdom. This is where another, denser layer of reality begins in the ladder-like Tree of Life. I think this reflects the Phoenician/Canaanite/Hebrew (these terms are somewhat but not completely interchangeable) alphabet, where the first nine marks are 1-9, the next ten are 10-90, and then we get some number of marks in the 100 series as well.}
+I would think it more proper to make more use of Ten, the \texttt{toss} operator. In particular I might want \texttt{b} in the first reduction to resolve undefined behavior along \texttt{branch 0} of another Ax computation, building thereby an Axtor model of cooperative behavior between small, well-defined, predictable \mbox{computers}.\footnote{The tenth Sephiroth is Malkuth, the Kingdom. This is where another, denser layer of reality begins in the ladder-like Tree of Life. I think this reflects the Phoenician/Canaanite/Hebrew (these terms are somewhat but not completely interchangeable) alphabet, where the first nine marks are 1-9, the next ten are 10-90, and then we get some number of marks in the 100 series as well.}
 
 % The radix we use in everyday life is 10. Our fingers? I mean of course our fingers. It does have some kind of virtue as the lowest even number containing an additional prime factor that isn't three; but what virtue is that precisely?
 
