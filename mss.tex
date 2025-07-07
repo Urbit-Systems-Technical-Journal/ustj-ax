@@ -15,8 +15,8 @@
 \fancyhead{}
 \fancyfoot[L]{{\footnotesize
               %% We toggle between these:
-              Manuscript submitted for review.\\
-              % {\it Urbit Systems Technical Journal} II:1 (2024):  40–50. \\
+              % Manuscript submitted for review.\\
+              {\it Urbit Systems Technical Journal} II:1 (2025):  189–50. \\
               ~ \\
               Address author correspondence to \authorpatp.
               }}
@@ -42,16 +42,12 @@ Group of Nocks \\ Ax:  An Algebraic Executable Ur-Machine}
 \thispagestyle{firststyle}
 
 \begin{abstract}
-Conk, the permutation group of 720 Nock machines based on the ordering of primitive opcodes 0--5, is introduced.
-
-Ax is a specific cellular automaton for general purpose computation.  First developed as a thought experiment on a Nock-like combinator calculus, Ax seeks to build a logical order of operators in sequence, starting from the definition of a noun.
-
-This historical document presents and explores Conk, Ax, and their ramifications for Nock-style combinator computing.
+Conk, the permutation group of 720 Nock machines based on the ordering of primitive opcodes 0--5, is introduced.  Ax is a specific cellular automaton for general purpose computation.  First developed as a thought experiment on a Nock-like combinator calculus, Ax seeks to build a logical order of operators in sequence, starting from the definition of a noun.  This historical document presents and explores Conk, Ax, and their ramifications for Nock-style combinator computing.
 \end{abstract}
 
 % We will adjust page numbering in final editing.
 \pagenumbering{arabic}
-\setcounter{page}{1}
+\setcounter{page}{189}
 
 \tableofcontents
 
@@ -59,9 +55,9 @@ This historical document presents and explores Conk, Ax, and their ramifications
 
 There are 720 valid Nock machines, defined as any cellar auto\-maton which provides a mapping from the Nock rewrite rules to any one of every digit of set \texttt{\{0..5\}}. Since one of them is actually called Nock, let's call the permutation group Conk.
 
-Two of them are Ax machines, or would be, minus the fz operation. That is, there are two Conks which have the same mappings for 0, 1, 2, and 3. There are actually six Ax machines, two of which have the same axioms as Nock machines; we may consider those two as Nock equivalent, by permuting fz above the Nock (proper) threshold of 10. By the same simple mathematics, there are 5040 possible Conk-compliant machines computationally equivalent to Ax, Nock not among them. We will call this permutation group Xa, for what other choice do we have?
+Two of them are Ax machines, or would be, minus the \texttt{fz} operation. That is, there are two Conks which have the same mappings for \texttt{0}, \texttt{1}, \texttt{2}, and \texttt{3} [as the then-current Nock 5K]. There are actually six Ax machines, two of which have the same axioms as Nock machines; we may consider those two as Nock equivalent, by permuting \texttt{fz} above the Nock (proper) threshold of 10. By the same simple mathematics, there are 5,040 possible Conk-compliant machines computationally equivalent to Ax, Nock not among them. We will call this permutation group Xa. %, for what other choice do we have?
 
-Six is a small enough number to consider in entirety. The only bit that is arbirary is the range on sigma $\sigma$, which is only arbitrary if you're not an extant silicon computer.
+Six is a small enough number to consider in entirety. The only bit that is arbitrary is the range on sigma \texttt{¨}, which is only arbitrary if you're not an extant silicon computer.
 
 I am convinced Ax α is the best possible choice among the six. I hope to demonstrate that here.
 
@@ -71,9 +67,7 @@ There are an infinite number of cellular automata. Conk machines are a class. Ax
 
 \subsection{Specification}
 
-This text specifies Ax, a cellular automaton for general purpose computation.
-
-It is a work of mathematics in the public domain.
+This text specifies Ax, a cellular automaton for general purpose computation.  It is a work of mathematics in the public domain.
 
 \subsection*{Preamble}
 
@@ -95,17 +89,15 @@ It is a work of mathematics in the public domain.
 
 \subsection*{Term}
 
-\begin{lstlisting}[style=listingcode,numbers=none]
+\begin{lstlisting}[style=listingcode_Ax]
 ~(0..1) := ¨
 \end{lstlisting}
-
-\newpage
 
 \subsection*{Reduction}
 
 \subsubsection*{Axioms}
 
-\begin{lstlisting}[style=listingcode]
+\begin{lstlisting}[style=listingcode_Ax]
 § [0]            →  § [0]
 § [0 0]          →  § [0 0]
 § [0 0 0]        →   0
@@ -138,16 +130,16 @@ It is a work of mathematics in the public domain.
 
 \subsection*{Terms}
 
-\begin{lstlisting}[style=listingcode]
-7 operators
+\begin{lstlisting}[style=listingcode_Ax]
+7 operators                 7 lemmas
 
-0  := is
-1  := inc
-2  := br
-3  := ax
-4  := eq
-5  := fz
-6  := cel
+0  := is                    12 := dec
+1  := inc                   13 := add
+2  := br                    14 := sub
+3  := ax                    15 := mul
+4  := eq                    16 := div
+5  := fz                    17 := mod
+6  := cel                   18 := lt
 
 5 idioms
 
@@ -157,38 +149,30 @@ It is a work of mathematics in the public domain.
 10 := put
 11 := arm
 
-7 lemmas
-
-12 := dec
-13 := add
-14 := sub
-15 := mul
-16 := div
-17 := mod
-18 := lt
-\end{lstlisting}
-
-\begin{lstlisting}[style=listingcode]
-§ [a 12 b]  →  § [b [cnk [is 0] [cnk [is [if [eq [br 7] [up br 6]] [br 6] [arm 2 [[br 2] [up br 6] [br 7]]]]] [arm 2 br 1]]]]
+§ [a 12 b]  →  § [b [cnk [is 0]
+  [cnk [is [if [eq [br 7] [up br 6]]
+               [br 6]
+               [arm 2 [[br 2] [up br 6] [br 7]]]]]
+       [arm 2 br 1]]]]
 
 etc.
-\end{lstlisting}
 
 Version 61K
+\end{lstlisting}
 
 \subsection{Explanation}
 
-\paragraph{Axioms}
+\subsubsection{Axioms}
 
-\subparagraph{Zero}
+\paragraph{Zero}
 
-\texttt{0} is the identity operator, \texttt{is}. There are two operations that are closed over the monoid of the natural numbers, addition and multiplication. Of them, multiplication is consequent. In the operation of addition, 0 returns the identity. If you have any number, you may now return it. You now have \texttt{0}, and may return it:
+\texttt{0} is the identity operator, \texttt{is}. There are two operations that are closed over the monoid of the natural numbers, addition and multiplication. Of them, multiplication is consequent. In the operation of addition, \texttt{0} returns the identity. If you have any number, you may now return it. You now have \texttt{0}, and may return it:
 
 \begin{lstlisting}[style=listingcode]
 § [0 0 0] -> 0
 \end{lstlisting}
 
-\subparagraph{One}
+\paragraph{One}
 
 \texttt{1} is the increment operator, \texttt{up}, as premised in the preamble. If you have a number, and you now have 0, you may increment it. 
 
@@ -196,7 +180,7 @@ Version 61K
 § [0 0 1 0] -> 1
 \end{lstlisting}
 
-\subparagraph{Two}
+\paragraph{Two}
 
 \texttt{2} is the branch operator, \texttt{branch}. You need \texttt{0}, \texttt{1}, \texttt{2} and \texttt{3} to define \texttt{branch}, but you can use \texttt{1} and \texttt{2} to produce \texttt{3}. \texttt{mod} being explicitly provided, we may write an expansion that actualy runs quite servicably. The Nock spec provides no way to factor \texttt{a} into \texttt{a + a}, nor to determine which of lines 15 or 16 to apply. This does not detract from its correctnesss, these are very ordinary operations on the natural numbers.
 
@@ -204,80 +188,76 @@ Branch \emph{selects} a branch, it does not \emph{cause} one. Branch/forking hap
 
 Note that so far, we have halting rules and trivial crashes only. Next comes the distribution rule, which gets us most of the way there, and then the explicit recursion rule, \texttt{Ax}. These \emph{cause} branches, and composing that ability with \texttt{branch} raises the bar. 
 
-How many operators does it take to write an infinite loop? I am curious, without the time to explore the question. I predict the set will be low ordered with respect to Ax. Consequently it will be composed of the operators \texttt{0..4}, inclusive, likely without 4. We'll see. 
+How many operators does it take to write an infinite loop? I am curious, without the time to explore the question. I predict the set will be low ordered with respect to Ax. Consequently it will be composed of the operators \texttt{0..4}, inclusive, likely without \texttt{4}. We'll see. 
 
-\subparagraph{Three}
+\paragraph{Three}
 
-\texttt{3} is the \texttt{ax} operator, \texttt{Ax}, which Nocks a noun apart and evals it. The symbol \texttt{nck} is also reserved for this operator, en homage. Why 3? Well, that's a digression, while I'll gloss over.
+\texttt{3} is the \texttt{ax} operator, \texttt{Ax}, which Nocks a noun apart and evals it. The symbol \texttt{nck} is also reserved for this operator, en homage. %Why 3? Well, that's a digression, while I'll gloss over.
 
-Consider that there are two ways to index: by zero, and by one. What if you want to contain the damage? Well, you could count (0|1) (1|2) (2|3) 4 5 6, or (0|1) (0|1) (2|3) (3|4) 4, 5, 6. The latter is taxing on our already strained resources. 
+Consider that there are two ways to index: by zero, and by one. What if you want to contain the damage? Well, you could count \texttt{(0|1) (1|2) (2|3) 4 5 6}, or \texttt{(0|1) (0|1) (2|3) (3|4) 4, 5, 6}. The latter is taxing on our already strained resources. 
 
-In certain circles this difficulty is referred to as the ``Abyss". My solution to this difficulty is suggested by ancient texts but the interpretation is to my knowledge completely original. We are all fairly certain the mystery involves both 3 and 11. Let's leave it at that for now. 
-
-\texttt{Ax} could be 2, but \texttt{branch} could not be 3, or we would have [2 1 3 1], and where did that three come from? Also, branch on address 3 is not defined in the reductions. 
+In certain circles this difficulty is referred to as the ``Abyss". My solution to this difficulty is suggested by ancient texts but the interpretation is to my knowledge completely original. We are all fairly certain the mystery involves both \texttt{3} and \texttt{11}. Let's leave it at that for now.\footnote{\texttt{Ax} could be \texttt{2}, but \texttt{branch} could not be 3, or we would have \texttt{[2 1 3 1]}, and where did that three come from? Also, branch on address 3 is not defined in the reductions.}
 
 Note that both the distributive property and \texttt{Ax} may safely be made parallel once the cell to calculate both branches is composed. Indeterminate, mutually dependant behavior may be arranged only through abuse of the \texttt{0} branch and the \texttt{put} operator, in the usual fashion. 
 
-\subparagraph{Four}
+\paragraph{Four}
 
-\texttt{4} is the \texttt{eq} operator, which returns 0 if the evaluated cons(subject,object) is equal and 1 if it is not, crashing on an atom. 
+\texttt{4} is the \texttt{eq} operator, which returns 0 if the evaluated \texttt{cons(subject,object)} is equal and 1 if it is not, crashing on an atom.
 
-Why is four \texttt{eq}? Well, it's our first non-prime operator, if you accept the case that 0 and 1 are neither prime nor non prime. They have a special relationship with multiplication that makes that case plausible; certainly I was taught the primality of one, though the field would appear to have changed its mind. 
+Why is \texttt{4} \texttt{eq}? Well, it's our first non-prime operator, if you accept the case that 0 and 1 are neither prime nor non prime. They have a special relationship with multiplication that makes that case plausible; certainly I was taught the primality of one, though the field would appear to have changed its mind. 
 
 It could be \texttt{cel}, but as we'll see, \texttt{cel} should not be 4. \texttt{eq}'s expansion may be thought of as having an `even' test or a `double even' test, that is, it \texttt{if}s on \texttt{cel} (though of course, the reduction does not). If `odd', test atomic equality, if `even', apply \texttt{cel}. 
 Note that all even-numbered operators and idioms have exactly two expansions, that is, they are higher order branching. Even \texttt{put} is capable of branching, depending on implementation.
 
-\subparagraph{Five}
+\paragraph{Five}
 
-\texttt{5} is the \texttt{fz} operator, one of the raisons d'etre for Ax versus Nock.
-
-Note that in Plan Ax from Conk Space, 5 is \texttt{cel}. 
-
+\texttt{5} is the \texttt{fz} operator, one of the raisons d'etre for Ax versus Nock.  %Note that in Plan Ax from Conk Space, 5 is \texttt{cel}. 
 Fully qualified Ax machines are not deterministic, because they aren't colorblind. In addition to Black and White bits, Ax machines must supply Red bits, which are completely different because they come from an actual, high quality source of entropy. Note that, while weird, this is just as well formed as saying ``an actual, high quality source of numeric computations", in that you can just hop on the Internet and buy one. Ax machines must have both.
 
 This is why \texttt{fz} must be an operator, not a lemma. The Second Law of Thermodynamics is taken as axiomatic for our purposes; within the specification, the method of selecting on the range is deliberately left unspecified.
 
 The demonstration Ax machine uses Pink bits, which are only pseudorandom. This is strictly not compliant, for the purposes of a reference implementation, but I'm in a hurry. Feel free to use Pink bits if you're just futzing around, but consider making or buying a gig or two of entropy, or picking up an entropy machine. Cheap stuff, entropy, these days. Remember to throw it away as soon as you're done with it: the first rule of handling entropy is: any operation whatsoever upon it render it \emph{and any copies} no longer entropic.
 
-Because we have a term, not just a preamble and definition, there are an infinite number of possible Ax machines, even Ax α machines. Ours is Ax α 256, aka Ax Byte. The beautiful, Schemish Ax is Ax Bit, of course, but it may easily be emulated with modulo 128, whereas simulating the reverse transition is particularly tedious.
+%Because we have a term, not just a preamble and definition, there are an infinite number of possible Ax machines, even Ax α machines. Ours is Ax α 256, aka Ax Byte. The beautiful, Schemish Ax is Ax Bit, of course, but it may easily be emulated with modulo 128, whereas simulating the reverse transition is particularly tedious.
 
-A ternary machine would draw on nine trits of entropy, or whatever. Ax is meant to be used. 
+%A ternary machine would draw on nine trits of entropy, or whatever. Ax is meant to be used. 
 
-\texttt{5} has several expansions, for, among other reasons, compatibility with Hoon. Any Conk runs find on a Xa, but for safety, we have an Ax rule that that takes a \texttt{fz} result and \texttt{put}s it away, \texttt{is} ing a 0 instead, and then using the 0 to \texttt{is} the subject. Turning it into a no-op. Anything \texttt{fz} \texttt{mul} \texttt{is 0} will return 0, another convenient way of ignoring entropy. Lastly, one may expand \texttt{fz} by checking \texttt{branch 0} for \texttt{1} or \texttt{0}, discarding the result in the former case; this may easily be implemented as an on-off switch for an indeterminate function.
+\texttt{5} has several expansions, for, among other reasons, compatibility with Hoon. Any Conk runs fine on a Xa, but for safety, we have an Ax rule that takes a \texttt{fz} result and \texttt{put}s it away, \texttt{is}ing a 0 instead, and then using the 0 to \texttt{is} the subject, turning it into a no-op. Anything \texttt{fz} \texttt{mul} \texttt{is 0} will return 0, another convenient way of ignoring entropy. Lastly, one may expand \texttt{fz} by checking \texttt{branch 0} for \texttt{1} or \texttt{0}, discarding the result in the former case; this may easily be implemented as an on-off switch for an indeterminate function.
 
 Lastly, note that randomness is not mentioned in the spec. It is actually perfectly valid for \texttt{fz} to return any number in the range: you may rewind Ax and play it again, or feed it nothing but 128 in all cases, or 0, or anything else you'd like. The treatment of \texttt{5} and \texttt{branch 0} distinguishes the actual semantics of an Ax machine, as they introduce indeterminacy into the result. 
 
-Why 5? Zod, where else would you put it? 
+%Why 5? Zod, where else would you put it? 
 
-Note that we may generate 6 with \texttt{§ [4 5 [2 3]]}. Eventually, or immediately, depending on the Ax machine. This is considered beneath demonstration.
-
-\subparagraph{Six}
+\paragraph{Six}
 
 \texttt{6} is the cell operator, \texttt{cel}. It returns 0 for a cell and 1 for an atom, as you might expect. Symbols are inspected in this case to see what kind of noun they represent. 
 
-Why six? Well, there are two important kinds of cells in Ax, \texttt{[a b]} and \texttt{[a b c]}, as defined in the preamble. There are two groupings of six, \texttt{[[1 1] [1 1] [1 1]]} and \texttt{[[1 1 1] [1 1 1]]}. If you immediately recognize those are syntax errors, you're doing great. Happily, Ax is blessed with exactly three relevant data structures, as shown by the first three lines of the reduction: atoms and two cells, which may not be Axed, and 3 cells, which are n cells, and which may be Axed in some cases. 
+%Why six?
+Well, there are two important kinds of cells in Ax, \texttt{[a b]} and \texttt{[a b c]}, as defined in the preamble. There are two groupings of six, \texttt{[[1 1] [1 1] [1 1]]} and \texttt{[[1 1 1] [1 1 1]]}. If you immediately recognize those are syntax errors, you're doing great. Happily, Ax is blessed with exactly three relevant data structures, as shown by the first three lines of the reduction: atoms and two cells, which may not be Axed, and 3 cells, which are n cells, and which may be Axed in some cases. 
 
-Those are the axioms. I am totally convinced of 0, 1, 2, and 3, which define Ax space within Conk space. I am pretty sold on 4, 5, and 6, and on the benefits of Xa space and the \texttt{a br 0} reduction of 2. 
+Those are the axioms. I am totally convinced of \texttt{0}, \texttt{1}, \texttt{2}, and \texttt{3}, which define Ax space within Conk space. I am pretty sold on \texttt{4}, \texttt{5}, and \texttt{6}, and on the benefits of Xa space and the \texttt{a br 0} reduction of \texttt{2}.
 
-The reasoning behind the order of the idioms is basically Kabbalistic. Surprise surprise, that is the reasoning behind Ax space too. It just happens to look like a Page from the Book, as Erdős Pál would say.
+Note that we may generate \texttt{6} with \texttt{§ [4 5 [2 3]]}. Eventually, or immediately, depending on the Ax machine. This is considered beneath demonstration.
 
-\subsection{Idioms}
+The [ordering] of the idioms is basically Kabbalistic. That is the reasoning behind Ax space too. It happens to look like a Page from the Book, as Erdős Pál would say.
 
-Nock calls these macros, and defines them as such, though we are advised by the Crash Course that there's no reason to implement them this way. In Ax we call them idioms, indicating that they may be expanded as macros containing only the axioms. For the reduction, sometimes we do, sometimes we don't, whatever's cleanest. Since we have expansion rewrites as well as reductions, anything may be written as a macro, as long as you're not in a hurry to halt. 
+\subsubsection{Idioms}
+
+Nock calls these macros, and defines them as such, though we are advised by the Crash Course\footnote{Editor's note:  The documentation at the time.} that there's no reason to implement them this way. In Ax we call them idioms, indicating that they may be expanded as macros containing only the axioms. For the reduction, sometimes we do, sometimes we don't, whatever's cleanest. Since we have expansion rewrites as well as reductions, anything may be written as a macro, as long as you're not in a hurry to halt. 
 
 \texttt{7} is \texttt{cmp}, which composes functions, and which, through happenstance, ended up in the same place as in Nock. We're in Netzach, if you're paying attention.
 
-\texttt{8} is \texttt{if}, \texttt{9} is \texttt{cnk}, \texttt{10} is \texttt{put} and \texttt{11} is \texttt{arm}. \texttt{if}, \texttt{cnk} and \texttt{arm} work like 6, 8 and 9 from Nock, because they're identical except for the necessary permutations. \texttt{put} has the same syntax as the other \texttt{10}, and identical semantics: the results are undefined, other than that evaluation must happen if a cell is provided. We don't plan on using this for hinting, but if we're running Hoon 191, what other option do we have? 
+\texttt{8} is \texttt{if}, \texttt{9} is \texttt{cnk}, \texttt{10} is \texttt{put} and \texttt{11} is \texttt{arm}. \texttt{if}, \texttt{cnk} and \texttt{arm} work like \texttt{6}, \texttt{8}, and \texttt{9} from Nock, because they're identical except for the necessary permutations. \texttt{put} has the same syntax as the other \texttt{10}, and identical semantics: the results are undefined, other than that evaluation must happen if a cell is provided. We don't plan on using this for hinting, but if we're running Hoon 191, what other option do we have? 
 
 \texttt{put} fits nicely in \texttt{10}, because it's \texttt{0} all over again, having the same meaning for the purposes of the Arc of code under evaluation. The interaction between \texttt{put} and \texttt{branch 0} is envisioned as a crucial mechanism in the larger Arcitecture. 
 
 I could make a firm case for \texttt{dec} as consonant to \texttt{inc} and \texttt{arm} as consonant to \texttt{branch}, giving an opposite mapping. But the lemmas come after the idioms, and \texttt{dec} is clearly a lemma, and that is that. Certainly, the Nock tutorial shows that \texttt{dec} may be (somewhat) compactly specified in terms of the axioms.
 
-\subsection{Lemmas}
+\subsubsection{Lemmas}
 
 Ax comes equipped with the operations you'll need to have a reasonable Big O on integer algorithms.
 
-You're welcome.
+% You're welcome.
 
 \subsection{Distinctions between Ax and Nock}
 
@@ -285,15 +265,15 @@ There are four changes between Nock and Ax: the permutation of the operations, t
 
 \texttt{branch 0} provides for a very simple and ordinary thing: a number that comes from Outside, that we can only determine if we go and look. A port, say, or a sensor. I don't know how Hoon deals with this, but I know that Nock does not handle it at all. Ax does: you can hook a very simple piece of Ax up to a sensor and do things with the numbers. I consider this a virtue in a toy computer, and the zero branch was just sitting there being undefined. 
 
-I suggest a pleasant detour over to \href{http://thoughtmesh.net/publish/367.php}{Undefined Intimacy With the Machine}. It is not only a product of the Cathedral, it is from a field of \emph{critical studies}, called code studies, of course. (This guy is right out on the bleeding edge, my friends. )
-
+I suggest a pleasant detour over to \href{http://thoughtmesh.net/publish/367.php}{``Undefined Intimacy With the Machine''}. %It is not only a product of the Cathedral, it is from a field of \emph{critical studies}, called code studies, of course. (This guy is right out on the bleeding edge, my friends.)
 Not all code talks to Outside, but most code comes from Somewhere, and sometimes Somewhere might want to drop a noun or two into the mix. I gather this isn't what you do with Nock, and again, I bet Hoon provides it. The thing is that Ax machines make no assumption that the whole system is going to be running on one core, in fact they're decidedly more comfortable if that is not the case. 
 
-Could we run Ax machines on a ColorForth array? Zod man, what else are they good for? The Parallela is a less exotic target; if you know any OpenCL, the interaction between \texttt{branch 0} and \texttt{put} might be putting you in mind of a ``kernel". Excellent! We're on the same page. 
+Could we run Ax machines on a ColorForth array? %Zod man, what else are they good for?
+The Parallela is a less exotic target; if you know any OpenCL, the interaction between \texttt{branch 0} and \texttt{put} might be putting you in mind of a ``kernel". %Excellent! We're on the same page. 
 
 Why do we need \texttt{fz} though, with all this Undefined Intimacy going around? Well, because of the Rules of the Red Bit, basically. An undefined number is going to be some combination of Black and White when you look at it. A Red Bit is already Black or White, but it got that way in a very special manner, and you're not allowed to look at it (though you may copy it) or it's not Red anymore. Not to mention that sealed functions that use \texttt{fz} make perfect sense and should be allowed, and a function either crashes on \texttt{branch 0} or does something special with it, but not in general both. 
 
-\texttt{fz} is axiomatic, and we kind of force you to write your code in weird ways if you absolutely want to be sure it never comes up. It's a feature! We call it guessing, and have this notion that it makes for cheap machine learning. We hope a group effort can come up with some good uses. 
+\texttt{fz} is axiomatic, and we force you to write your code in weird ways if you absolutely want to be sure it never comes up. It's a feature! We call it guessing, and have this notion that it makes for cheap machine learning. We hope a group effort can come up with some good uses. 
 
 What about this \texttt{put} business? Well, we like the algebraic feature of Ax a lot. We don't need hints, because it's quite normal for Ax code to come with both embedded symbols and a table containing expansions for the symbols, as well as jets for the assisted ones. In a mature environment, we scrub this of any taint of variability and anonymize everything, so your \texttt{foo} and my \texttt{foo} will be different even if they happen to be equal (minus yet another layer of abstraction!). As it stands, AxUM is a single computation and all symbols must be distinct and have singular expansions.
 
@@ -325,6 +305,9 @@ So that's the Ax machine. Maxwell's equations build each on the others, as Eucli
 
 \subsection{Comments on Ax}
 
+\sloppy
+\emph{This historical document is excerpted for the portions most \mbox{relevant} to Ax's technical specification. The full document, \mbox{including} commentary on the philosophy of mathematics and computer science and an excursus on Hoon, is available at \\ \url{https://github.com/mnemnion/ax/blob/master/comment.md}.}
+
 \begin{quote}
   Whence it is that the ultimate laws of Logic are mathematical in their form; why they are, except in a single point, identical with the general laws of Number; and why in that particular point they differ;---are questions upon which it might not be very remote from presumption to endeavour to pronounce a positive judgment.  Probably they lie beyond the reach of our limited faculties.  It may, perhaps, be permitted to the mind to attain a knowledge of the laws to which it is itself subject, without its being also given to it to understand their ground and origin, or even, except in a very limited degree, to comprehend their fitness for their end, as compared with other and conceivable systems of law.  (George Boole, \emph{An Investigation of the Laws of Thought})
 \end{quote}
@@ -337,9 +320,7 @@ Ax extensively derives its formal structure from Nock. Nock is a formidable work
 
 cgy (this is an honorific style in our culture) is \href{https://unqualifiedreservations.wordpress.com/2007/08/02/whats-wrong-with-cs-research/}{suspicious of mathematics}. This is an understandable error, but error it remains. We had the good fortune to be born just in time for the great wave of microprocessor technology to wash over our civilization. Part and parcel of this was that the really juicy, good and useful mathematics was done by engineers with graphite on their sleeves, slide rules, and great fanfold sheets of printed code.
 
-This is not to denigrate the \href{https://en.wikipedia.org/wiki/Nicolas_Bourbaki}{Bourbaki}s of the world. No doubt when things calm down a bit, we can sift through postwar mathematics looking for the nuggets of insight. They retreated into a private language, and I'm willing to grant that may have been necessary for their work.
-
-Will any of it ever have the impact on human civilization as, say, Dijkstra's pathfinding algorithm? I would wager it will not.
+This is not to denigrate the \href{https://en.wikipedia.org/wiki/Nicolas_Bourbaki}{Bourbaki}s of the world. No doubt when things calm down a bit, we can sift through postwar mathematics looking for the nuggets of insight. They retreated into a private language, and I'm willing to grant that may have been necessary for their work.  Will any of it ever have the impact on human civilization as, say, Dijkstra's pathfinding algorithm? I would wager it will not.
 
 Dijkstra himself was emphatically a mathematician. Would we say the same of Ken Thompson and Rob Pike? Of course not, they are engineers. Yet the \href{https://en.wikipedia.org/wiki/UTF-8#History}{\textsc{utf}-8 encoding} is poised to be the very substance of human language for as long as our civilization lasts. The great work of unifying all systems of writing, undoing at least one small fraction of the disaster at Babel, or, if you prefer historicity to metaphor, succeeding for the first time in this great cause; if this is not mathematics, what then \emph{is} mathematics? If you don't see a \href{https://en.wikipedia.org/wiki/Erdős_Pál}{Page from the Book} in the encoding diagram for \textsc{utf}-8, dear Reader, venture elsewhere. You're not going to like the rest of this.
 
@@ -413,51 +394,42 @@ The trick of computation is in the nominal case. Yet the natural numbers retain 
 
 \begin{lstlisting}[style=listingblock]
   A noun is either an atom or a cell.
-
   An atom is any natural number.
-
   A cell is an ordered pair of nouns.
 \end{lstlisting}
 
-This is the simplest possible data structure, which is also recursive.
-
-This is how you know it is correct.
-
-It is also acyclic, which is a good property to have.
+This is the simplest possible data structure, which is also recursive.  (This is how you know it is correct.)  It is also acyclic, which is a good property to have.
 
 \subsubsection{Loops}
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [0]  →  § [0]
-
 § [0 0]  →  § [0 0]
 \end{lstlisting}
 
-These are the identity atom and the identity cell.
-
-Neither is reducible. Both loop endlessly on their own self.
-
-Pretty. But not calculation.
+\noindent
+These are the identity atom and the identity cell.  Neither is reducible. Both loop endlessly on their own self.  Pretty. But not calculation.
 
 \subsubsection{Identity}
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [0 0 0]        →   0
 \end{lstlisting}
 
+\noindent
 Zero has, as one of its cardinal properties, which are, again, those inherent to its being, the property of \href{https://en.wikipedia.org/wiki/Identity_function}{identity} in addition. To add zero to any atom results in precisely that atom, neither more nor less.
 
 Additionally, Zero has the property of \href{https://en.wikipedia.org/wiki/Absorbing_element}{annihilation} under multiplication. Zero, multiplied with any atom, results always and only in Zero.
 
-0, or \texttt{is}, is the identity operator of the Ax automaton. It annihilates the left noun, returning the rightmost without further change.
+\texttt{0}, or \texttt{is}, is the identity operator of the Ax automaton. It annihilates the left noun, returning the rightmost without further change.
 
 This nomination is \emph{consonant} with Zero's properties, considered in itself. This nomination allows the minimal triple to reduce to 0, which is cardinal 1 of the natural numbers, a gentle mind bend called \href{https://en.wikipedia.org/wiki/Successor_function}{zeration}.
 
-Zeration is weird. I will grant you this. It is also necessary, and introduces our next ability, adding elements to a set in succession.
+Zeration is weird---I will grant you this. It is also necessary, and introduces our next ability, adding elements to a set in succession.
 
 This \texttt{up} operation may be combined feasibly with \texttt{is}, thus:
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [0 1 0 0]      →   1
 \end{lstlisting}
 
@@ -465,13 +437,12 @@ In our first demonstration, the Zero which emerges from the reduction is the \em
 
 We clarify this with our third demonstration.
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [0 1 0 1]      →   2
 \end{lstlisting}
 
-The Zero that became One is now One, and so that One is Two.
-
-That One is \emph{consonant} with the quality of adding itself to things, is evident. Incrementation is the foundation of the natural numbers; the rest is induction. One is the identity of multiplication, yet it is the annihilation of nothing; we must \emph{Ax} the left and right together, and increment upon the result.
+\noindent
+The Zero that became One is now One, and so that One is Two.  That One is \emph{consonant} with the quality of adding itself to things, is evident. Incrementation is the foundation of the natural numbers; the rest is induction. One is the identity of multiplication, yet it is the annihilation of nothing; we must \emph{Ax} the left and right together, and increment upon the result.
 
 Let us observe, also, these consonances:
 
@@ -486,9 +457,7 @@ Let us observe, also, these consonances:
 
 The study of recursive structure is called grammar. It is also of \href{https://en.wikipedia.org/wiki/P%C4%81%E1%B9%87ini}{Indian invention}. cgy's choice to call the noun the noun, was inspired, graceful. Calling the branch \texttt{slot}, was not.
 
-cgy thinks of words in terms of the cost to represent them in a computation. More than four letters is profligate by this standard.\footnote{Editor's note:  four \textsc{ascii} letters fit in one 32-bit direct atom.} Be that as it may, \texttt{slot} is ugly. Recursive slot-in-slot, is not a thing. I saved four letters with \texttt{is} and \texttt{up}; I will now burn two to get six letters, for the best word for the job.
-
-I believe the most important space to save is in the human mind. \href{https://books.google.com/ngrams/graph?content=branch%2Cslot&year_start=1800&year_end=2000&corpus=15&smoothing=3}{Branch is the more frequent word}, and would be lower-ordered in a dictionary compression based on Zipf's Law.
+cgy thinks of words in terms of the cost to represent them in a computation. More than four letters is profligate by this standard.\footnote{Editor's note:  four \textsc{ascii} letters fit in one 32-bit direct atom.} Be that as it may, \texttt{slot} is ugly. Recursive slot-in-slot, is not a thing. I saved four letters with \texttt{is} and \texttt{up}; I will now burn two to get six letters, for the best word for the job.\footnote{I believe the most important space to save is in the human mind. ``Branch'' is the more frequent word, and would be lower-ordered in a dictionary compression based on Zipf's Law.}
 
 Such different creatures as the deer, trees, and coral reefs, have elements we call branches. These bifurcate recursively.
 
@@ -496,9 +465,7 @@ Such different creatures as the deer, trees, and coral reefs, have elements we c
 2: A cell is an ordered pair of nouns.
 \end{lstlisting}
 
-\texttt{branch} is the first operation to require the properties of a subjective cell, in the sense that the subject must be a cell for four of the reductions to succeed. The Zero operation requires nothing at all but a noun of phrasal structure, and the status of the subject is irrelevant. One requires that the result of Axing upon the subject and object succeed, and return an atom for incrementation, but the subject may be atomic, and the returned value must be.
-
-\texttt{branch} also establishes the sense in which a pair of nouns is ordered.
+\texttt{branch} is the first operation to require the properties of a subjective cell, in the sense that the subject must be a cell for four of the reductions to succeed. The Zero operation requires nothing at all but a noun of phrasal structure, and the status of the subject is irrelevant. One requires that the result of Axing upon the subject and object succeed, and return an atom for incrementation, but the subject may be atomic, and the returned value must be.  \texttt{branch} also establishes the sense in which a pair of nouns is ordered.
 
 We now progress in our representation. Having the ability to generate all of the natural numbers, we pat our pockets, looking for a place to put them. Thing is, they get cumbersome if we just accumulate marks. The space is linear, we would prefer logarithmic, it's more compact. Binary is the simplest scheme after unary, this is why we use it.
 
@@ -506,15 +473,13 @@ We will be treating repeatedly upon triple cells, which we should call a phrase.
 
 Which brings us to the next demonstration:
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [2 1 2 1]      →   3
 \end{lstlisting}
 
 In which we \texttt{up} \lstinline[style=inlinecode]{§ [2 2 1]}, in which Two selects Two, the whole (One) of the Subject. Yielding Three, thus.
 
-We see from this that One is the identity of the Two operation, returning the whole of the Subject. Is Zero, then, the annihilation of Two?
-
-It is precisely the inverse, and so, undefined.
+We see from this that One is the identity of the Two operation, returning the whole of the Subject. Is Zero, then, the annihilation of Two? It is precisely the inverse, and so, undefined.
 
 Novelty is sexy. Novelty is humble. A calculation is a machine, a vessel of definite size and shape existing over a span of moments. What is above the subject, enclosing it as the subject encloses its branches?
 
@@ -522,47 +487,48 @@ Well, plausibly the whole of the noun, which, do what thou wilt shall be. Which 
 
 This perfectly ordinary, almost biological function, needn't be fig-leaved over by some scheme of wandering in an \href{https://en.wikipedia.org/wiki/The_Library_of_Babel}{infinite hall of mirrors} in which new nouns are sort of discovered to be already within the noun's recursive depths.
 
-I grant this is an \emph{option} yet it is one that leaves Two without a meaningful Zero Object. It seems wasteful, is all.
+I grant this is an \emph{option} yet it is one that leaves Two without a meaningful Zero Object. It seems wasteful, is all.  We like our reductions to be compact. Consonant. Aesthetic.
 
-We like our reductions to be compact. Consonant. Aesthetic.
+% \subsubsection{Digression: The Nature of the Demonstrations}
 
-\subsubsection{Digression: The Nature of the Demonstrations}
+% The rules of the Ax automaton do not require that the demonstrations be present. They are intended as concrete expressions of the underlying clarity of logic and form, speaking of the \emph{inevitability} of Ax, given natural numbers, and a desire for a universal computation.\footnote{It is said of the ancient game \href{https://en.wikipedia.org/wiki/Go_(game)}{Wei Ch'i} that, if we encounter alien intelligence, it will know Wei Ch'i, because the logic of the game is that pure, relentless, simple. \href{https://en.wikipedia.org/wiki/Chess}{Chess} is clearly but one of the many chesses, as evidenced by its \href{https://en.wikipedia.org/wiki/Shogi}{Asian variants}, and yet, we were those alien intelligences, and here by `we' I temporarily mean the English-speaking peoples, and we didn't know Wei Ch'i for really a remarkably long time. It is a fact of history I find difficult to account for that Chess reached the Western lands and Wei Ch'i did not.}
 
-It is said of the ancient game \href{https://en.wikipedia.org/wiki/Go_(game)}{Wei Ch'i} that, if we encounter alien intelligence, it will know Wei Ch'i, because the logic of the game is that pure, relentless, simple. \href{https://en.wikipedia.org/wiki/Chess}{Chess} is clearly but one of the many chesses, as evidenced by its \href{https://en.wikipedia.org/wiki/Shogi}{Asian variants}, and yet, we were those alien intelligences, and here by `we' I temporarily mean the English-speaking peoples, and we didn't know Wei Ch'i for really a remarkably long time. It's a fact of history I find difficult to account for, that Chess reached the Western lands and Wei Ch'i did not.
+% % It may be we will one day encounter alien intelligence, or at least, signals from alien intelligence. It may be we will not. If we are able to construct an automaton that is inevitable, and could be constructed in a way that grows its own complexity, we may find that this construction is more universal than DNA.
 
-The rules of the Ax automaton do not require that the demonstrations be present. They are intended as concrete expressions of the underlying clarity of logic and form, speaking of the \emph{inevitability} of Ax, given natural numbers, and a desire for a universal computation.
+% % Or we may need to stay satisfied in our own achievements. In which case,
+% The elegance of expressing computation with an automaton that exhibits these properties may be its own reward. The \href{https://en.wikipedia.org/wiki/Method_of_loci}{mnemonic weight} of each numbering being consonant with the cardinal properties of the number, and the well-ordered nature of combining each element, starting from absolute minimal complexity, matching and complementing the ordinal nature of the natural numbers.
 
-It may be we will one day encounter alien intelligence, or at least, signals from alien intelligence. It may be we will not. If we are able to construct an automaton that is inevitable, and could be constructed in a way that grows its own complexity, we may find that this construction is more universal than DNA.
+% There is a third possibility: we may create another intelligence equal to our own. If analogous progress in computation is any guide, that intelligence will rapidly \href{http://slatestarcodex.com/2015/05/22/ai-researchers-on-ai-risk/}{exceed our own in power}. Such an intelligence would have a keen interest in computational automata, as it would in some important sense be one.
 
-Or we may need to stay satisfied in our own achievements. In which case, the elegance of expressing computation with an automaton that exhibits these properties may be its own reward. The \href{https://en.wikipedia.org/wiki/Method_of_loci}{mnemonic weight} of each numbering being consonant with the cardinal properties of the number, and the well-ordered nature of combining each element, starting from absolute minimal complexity, matching and complementing the ordinal nature of the natural numbers.
+% If it is able to follow the same chain of reasoning, with respect to building upon a minimal-recursive structuring of the natural numbers, if it is able to agree with us on the mnemonic utility of the operative assignments, the intellectually pleasing well-ordered formation of the machine, well. Perhaps it will respect us, perhaps it will be more inclined to think such respect is mutual. You never know.
 
-There is a third possibility: we may create another intelligence equal to our own. If analogous progress in computation is any guide, that intelligence will rapidly \href{http://slatestarcodex.com/2015/05/22/ai-researchers-on-ai-risk/}{exceed our own in power}. Such an intelligence would have a keen interest in computational automata, as it would in some important sense be one.
+% I have designed, or discovered, a game in the Wei Ch'i family, called Chakra. It is played upon a field of intersecting rings, each intersection having four neighbors. Because of this lack of liberty-constrained sides and corners, it is feasible to introduce a movement rule after placement of the stone, the liberties counted twice, once after placement and once after movement, both such moves being optional.
 
-If it is able to follow the same chain of reasoning, with respect to building upon a minimal-recursive structuring of the natural numbers, if it is able to agree with us on the mnemonic utility of the operative assignments, the intellectually pleasing well-ordered formation of the machine, well. Perhaps it will respect us, perhaps it will be more inclined to think such respect is mutual. You never know.
+% Would an alien intelligence also possess this game? It is simple enough to imagine so, yes. Surely they would understand it. Yet it was invented in the 21st century, actually in the year which is ambiguously of either millennium.
 
-I have designed, or discovered, a game in the Wei Ch'i family, called Chakra. It is played upon a field of intersecting rings, each intersection having four neighbors. Because of this lack of liberty-constrained sides and corners, it is feasible to introduce a movement rule after placement of the stone, the liberties counted twice, once after placement and once after movement, both such moves being optional.
+% Accepting that Ax is correct, not merely functional, might require expanding our standards of correctness for a mathematical demonstration. We are normally afforded a gap between the semantics of a symbol and its mark, the symbol considered as itself. Why is $\pi$ represented with that symbol? Tradition, nothing more. It is useful if they have a mnemonic relationship with the semantics, even if that relationship is quite complex, as Cantor's choice of א to represent kinds of infinity.\footnote{To my own taste, I'm a \href{https://tauday.com/}{Tauist} on $\pi$, thinking ``a bit more than six and a quarter" has a nice ring to it, where circularity is concerned. As for \href{https://en.wikipedia.org/wiki/Georg_Cantor}{Cantor}, if I didn't like that song, I wouldn't have hummed it.}
 
-Would an alien intelligence also possess this game? It is simple enough to imagine so, yes. Surely they would understand it. Yet it was invented in the 21st century, actually in the year which is ambiguously of either millennium.
+% But when we represent a basic set of operations on the natural numbers, using the natural numbers themselves, more is required of us. Games such as Wei Chi are pleasing to the mathematical mind, because they unfold in a deterministic and complex way from simple, obvious rules. The ordering of its axioms is not particularly important (I assume there is a best one), nor the precise way in which they are stated.
 
-Accepting that Ax is correct, not merely functional, might require expanding our standards of correctness for a mathematical demonstration. We are normally afforded a gap between the semantics of a symbol and its mark, the symbol considered as itself. Why is $\pi$ represented with that symbol? Tradition, nothing more. It is useful if they have a mnemonic relationship with the semantics, even if that relationship is quite complex, as Cantor's choice of א to represent kinds of infinity.\footnote{To my own taste, I'm a \href{https://tauday.com/}{Tauist} on $\pi$, thinking ``a bit more than six and a quarter" has a nice ring to it, where circularity is concerned. As for \href{https://en.wikipedia.org/wiki/Georg_Cantor}{Cantor}, if I didn't like that song, I wouldn't have hummed it.}
+% The natural numbers have an order, as well as the properties particular to each. We show with the demonstrations that the Ax ordering follows the natural order, and we make the case here for the consonance between the cardinal properties of the natural numbers and their action as operators in Ax.
 
-But when we represent a basic set of operations on the natural numbers, using the natural numbers themselves, more is required of us. Games such as Wei Chi are pleasing to the mathematical mind, because they unfold in a deterministic and complex way from simple, obvious rules. The ordering of its axioms is not particularly important (I assume there is a best one), nor the precise way in which they are stated.
+% It is left to the Reader to decide if these properties are valuable, and if so, how best to make use of them.
 
-The natural numbers have an order, as well as the properties particular to each. We show with the demonstrations that the Ax ordering follows the natural order, and we make the case here for the consonance between the cardinal properties of the natural numbers and their action as operators in Ax.
-
-It is left to the Reader to decide if these properties are valuable, and if so, how best to make use of them.
-
-And so we come to the Rules, in which the demonstrations are abstracted and generalized. These are the only necessary reductions. The demonstrations are special cases, presented because they are special.
+% And so we come to the Rules, in which the demonstrations are abstracted and generalized. These are the only necessary reductions. The demonstrations are special cases, presented because they are special.
 
 \subsection{The Rules of Ax}
 
-\begin{lstlisting}[style=listingblock]
+\subsubsection{The First}
+
+\begin{lstlisting}[style=listingcode]
 § [a 0 b]        →   b
 \end{lstlisting}
 
 This states the general case of the \texttt{is} identity operator. Of which no more need be said.
 
-\begin{lstlisting}[style=listingblock]
+\subsubsection{The Second}
+
+\begin{lstlisting}[style=listingcode]
 § [a 1 0 n]      →   n + 1
 \end{lstlisting}
 
@@ -570,28 +536,32 @@ This line is part demonstration, part rule. I believe that a concrete demonstrat
 
 This line is optional, a luxury, an aid to understanding.
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [a 1 b]        →   § [a b]   →   n   →   n + 1
 \end{lstlisting}
 
+\noindent
 Here we have the statement of the \texttt{up} operator. Which should be by this point straightforward. Note the generic character of the two signifiers \lstinline[style=inlinecode]{a} and \lstinline[style=inlinecode]{b}, and the progressive specification of \lstinline[style=inlinecode]{n}, which must be atomic.
 
-\begin{lstlisting}[style=listingblock]
+\subsubsection{The Third}
+
+\begin{lstlisting}[style=listingcode]
 § [a 2 0]        →   ?
 \end{lstlisting}
 
-Now at last we have returned from this excursion, to explanation.
+\noindent
+At last we have returned from this excursion to explanation.
 
 As discussed, the reduction of \texttt{branch} 0 is undefined. This is one of the more philosophically weighty decisions in the Ax automaton, and bears further reflection.
 
-The property of operator 2 is that of selection. Normally this is from within the depths of the subject, which must contain all phrases necessary for the completion of the reductions specified in the object noun.
+The property of operator \texttt{2} is that of selection. Normally this is from within the depths of the subject, which must contain all phrases necessary for the completion of the reductions specified in the object noun.
 
-1 is chosen to represent the whole of the subject. I will here switch to the binary radix. The 10 operator, the first we express with two symbols, uses the value 1 for the whole subject, 10 for the left member, and 11 for the right. This pattern then continues, recursively, into the subject noun. We take a binary string, and consume it from the big end. When we encounter a 0, we take the left branch, when we encounter a 1, the right.
+1 is chosen to represent the whole of the subject. I will here switch to the binary radix. The \texttt{10} operator, the first we express with two symbols, uses the value 1 for the whole subject, 10 for the left member, and 11 for the right. This pattern then continues, recursively, into the subject noun. We take a binary string, and consume it from the big end. When we encounter a 0, we take the left branch, when we encounter a 1, the right.
 
 This is obviously the correct pattern. What could be changed about it? Each mark, be it zero or one, is a selection, and we call one left and the other right. In what sense is this meaningful?
 
-In the sense that text flows from left to right in Latin writing. If this were in Arabic, I would hope the translator would have the good sense to call them instead right and left. We are saying `left member' and `right member' but we truly mean the order of sense, in which the symbols are encountered, as though we are passing through time. We might also call them the negative and positive, respectively; although Zero is not in fact negative, it is distinctive among the natural numbers for being not positive, at least, and for being as close to the negative numbers as a whole number gets. Negative and positive also are used in the sense of charge, and insofar as the `no' and `yes' senses of those words correspond to Boolean truth, we find the terms satisfactory on that basis.\footnote{The proton and electron, as it happens, take on opposite symbols of charge from the intuitive. The proton being the origin of an atom, it should carry the term for zero as its charge nomination. There is absolutely nothing I can do about this other than complain about it. It comes from aspects, of the group behavior of electrons, which, being larger, were observed first. It's also a bit out of scope.}
-
+In the sense that text flows from left to right in Latin writing. If this were in Arabic, I would hope the translator would have the good sense to call them instead right and left. We are saying `left member' and `right member' but we truly mean the order of sense, in which the symbols are encountered, as though we are passing through time. We might also call them the negative and positive, respectively; although Zero is not in fact negative, it is distinctive among the natural numbers for being not positive, at least, and for being as close to the negative numbers as a whole number gets. Negative and positive also are used in the sense of charge, and insofar as the `no' and `yes' senses of those words correspond to Boolean truth, we find the terms satisfactory on that basis.
+%\footnote{The proton and electron, as it happens, take on opposite symbols of charge from the intuitive. The proton being the origin of an atom, it should carry the term for zero as its charge nomination. There is absolutely nothing I can do about this other than complain about it. It comes from aspects, of the group behavior of electrons, which, being larger, were observed first. It's also a bit out of scope.}
 Note that we \emph{prefer} left and right, as being legible.
 
 This pattern, in which each bit of an atom, represented in binary and consumed from the big end, with each successive bit representing the next tier of the noun, serves as explanation for why 1 is the symbol of the topmost tier of the subject, with which \texttt{branch} is ordinarily concerned. Were it otherwise, 1 and 10 would share a tier, and that is unsatisfactory.
@@ -605,21 +575,15 @@ To not allow a \texttt{branch} reduction by zero, to specify that this must be a
 The second is philosophical, and grounded in the concretion of an Ax automaton. There is the Ax automaton, which we are considering, but in our reality, there would be many, and each with its particular state.
 
 It is a fact of that reality that we may wish to introduce new information into this computation, placed as the subject of further reduction. We have here a choice: we may represent this as undefined behavior, and instantiate the new noun from whatever source we've retrieved it, perhaps enumerating it into the subject of further computation, perhaps merely incorporating it into the object of calculation directly.
+Or we may `discover' such new information within the subject itself, through sleight-of-hand. Such an automaton would be structured as embracing all knowledge within itself. Though this may be made to work, it is solipsistic, and we are concerned here with \texttt{10}; inside and outside is an important duality, and here, the key one.
 
-Or we may `discover' such new information within the subject itself, through sleight-of-hand. Such an automaton would be structured as embracing all knowledge within itself. Though this may be made to work, it is solipsistic, and we are concerned here with 10; inside and outside is an important duality, and here, the key one.
-
-\begin{lstlisting}[style=listingblock]
-§ [a 2 1]        →   a
-
-§ [[a b] 2 2]    →   a
-
-§ [[a b] 2 3]    →   b
-
+\begin{lstlisting}[style=listingcode]
+§ [a 2 1]            →   a
+§ [[a b] 2 2]        →   a
+§ [[a b] 2 3]        →   b
 § [a 2 (b + b)]      →   § [§ [a 2 b] 2 2]
-
 § [a 2 (b + b + 1)]  →   § [§ [a 2 b] 2 3]
-
-§ [a 2 b]        →   § [a 2 b]
+§ [a 2 b]            →   § [a 2 b]
 \end{lstlisting}
 
 The remaining six reductions follow this recursive, fractal pattern of selection to its logical conclusion. The crash default is an important reduction, as it is trivial to provide \texttt{branch} with a level of detail greater than the subject contains.
@@ -634,29 +598,30 @@ If the \lstinline[style=inlinecode]{[2 1 2 1]} demonstration were instead \lstin
 
 This first multiple reduction takes seven forms, and there are seven axiomatic operators in total. This symmetry is pleasing, and constitutes its own argument for the specific crash default and the inclusion of an undefined Zero branch.
 
-The two recursive reductions, each singly recursive, would occur in the tail position, amenable to representation as a simple loop. Its complexity is O(log(n)), formally, with the expectation that much of this can be traced away, replaced with a jump directly to the pointer for the selection within the subject.
+The two recursive reductions, each singly recursive, would occur in the tail position, amenable to representation as a simple loop. Its complexity is $O(\log(n))$, formally, with the expectation that much of this can be traced away, replaced with a jump directly to the pointer for selection within the subject.
 
-\subsection{Distribution}
+\subsubsection{Distribution}
 
-The 11 operator, which we will interchangeably refer to as 3, distributes the subject among the various objects of the computation.
+The \texttt{11} operator, which we will interchangeably refer to as \texttt{3}, distributes the subject among the various objects of the computation.
 
 This is the structural insight to which we owe Curtis Guy Yarvin our deepest respect and congratulations. I will interchangeably refer to this as the \texttt{Ax} or \texttt{Nock} operator. I trust this ambiguity will not be unduly confusing.
 
 The insight that the concept of the `environment' in Lisp was a harmful impediment to imposing a proper type system and functional computation is to be deeply respected. It is what enables this automaton to perform persistence and coordination of state in a repeatable, plausible fashion.
 
-Note that 11 is consonant with the operation of taking the 1 \texttt{branch}, which is the whole of the subject, and distributing it twice across the two members of the object.
+Note that \texttt{11} is consonant with the operation of taking the 1 \texttt{branch}, which is the whole of the subject, and distributing it twice across the two members of the object.
 
-Also, as an odd number, it takes a singular reduction. Lastly, it is concerned with three nouns, a, b, and c. We meet the first two of these these participants in the Zero reduction, one vanishing without a trace, the other carried forward. They are Axed together for the reduction of One.
+Also, as an odd number, it takes a singular reduction. Lastly, it is concerned with three nouns, \texttt{a}, \texttt{b}, and \texttt{c}. We meet the first two of these these participants in the Zero reduction, one vanishing without a trace, the other carried forward. They are Axed together for the reduction of One.
 
-The \texttt{branch} operator is concerned with a single, atomic object, which renders the choice within the subject, while the \texttt{Ax} operator concerns itself with the subject and a dual object, which is rendered into two pairings with the subject and calculated separately. Thus 11, or 3.
+The \texttt{branch} operator is concerned with a single, atomic object, which renders the choice within the subject, while the \texttt{Ax} operator concerns itself with the subject and a dual object, which is rendered into two pairings with the subject and calculated separately. Thus \texttt{11}, or \texttt{3}.
 
-The next demonstration:
+The next demonstration
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [3 3 [[2 1] [1 2 1]] [0 2 1]]   →   [3 4]
 \end{lstlisting}
 
-Combines the implicit and explicit forms of the distributive operation, splitting the atomic 3 object and incrementing the right half of this cell to produce \lstinline[style=inlinecode]{[3 4]}.
+\noindent
+combines the implicit and explicit forms of the distributive operation, splitting the atomic 3 object and incrementing the right half of this cell to produce \lstinline[style=inlinecode]{[3 4]}.
 
 This is the seed of falsehood.  We will discuss its significance in the next section, under equality.
 
@@ -664,21 +629,22 @@ When you understand, in detail, the reduction of this last demonstration, you ar
 
 Let us continue with this distributive operation, which also has a structural form, in another quiet touch of sheer brilliance.
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [a [b c] d]    →   [§ [a b c] § [a d]]
 \end{lstlisting}
 
 with
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [a 3 b c]      →   § [§ [a b] § [a c]]
 \end{lstlisting}
 
-Jointly manage state by consuming a chain of objects against the same context. This is the property which allows for the stack-heap duality approach to reducing by Nock a phrase, and operationally, for consistence of state along a chain of conditional operations, computation per se.
+\noindent
+jointly manage state by consuming a chain of objects against the same context. This is the property which allows for the stack-heap duality approach to reducing by Nock a phrase, and operationally, for consistence of state along a chain of conditional operations, computation per se.
 
 This should also render the series of operations amenable to tracing, as an optimization best applied early. Though I will note that I'm aware of no serious proposal to write one.
 
-\subsection{The Fourth}
+\subsubsection{The Fourth}
 
 The test of equality is doubly recursive.
 
@@ -688,21 +654,17 @@ The base case is false, because a test of equality is concerning itself with eit
 
 That is, if we have two unequal atoms, this is case Zero, and reduces to Zero.
 
-This is the 0 case.
+The One case is the equality of two atoms. It returns One, our symbol for Truth. Then, if we have a cell and an atom, it is definitionally false. Case \texttt{10}.
 
-The One case is the equality of two atoms. It returns One, our symbol for Truth.
+Then we must consider two cells. Recursively, by comparing the left of the left and the left of the right, and the right of the right and the right of the left, respectively. Case \texttt{11}. Closed.
 
-Then, if we have a cell and an atom, it is definitionally false. Case 10.
-
-Then we must consider two cells. Recursively, by comparing the left of the left and the left of the right, and the right of the right and the right of the left, respectively. Case 11. Closed.
-
-We well note that Four, being even, has two reductions.
+We will note that Four, being even, has two reductions.
 
 There is a trivial optimization available, if the Ax is represented using shared structure. If two pointers to cells are equal, those cells will be equal. Ax doesn't have this concept of shared structure, and inequality or equality may in any case prevail over two different pointers. It is the structure and contents of two cells, not details of their representation in memory, that are the final test.
 
 The worst case in time complexity is $O(n)$ the size of the subjects under comparison, which can be expensive; where shared structure can be chosen, it generally should be.
 
-\subsection{The Fifth}
+\subsubsection{The Fifth}
 
 The power of probability in computation is irrefutable. It is paradigmatic that it exists, in the form of novelty, a mysterious quality which influxes from the future. This stream of living energy, also called entropy, is a necessary part of computation. It is the inverse of the syntropic force necessary to physically power computation and life.
 
@@ -712,7 +674,7 @@ We represent luck with the number 5. It is a coin flip, a toss of the die, a sho
 
 In short, it is necessary to fair gambling, and other conditions when an event's total contribution to a computation is to be distributed but not harmonically.
 
-This Shrödinger's bit, we call `Red'. A difference between \texttt{branch} 0 and the \texttt{flip} operation is that the former may return anything at all, hopefully well-formed, while the latter must return either 0 or 1. Deriving this bit from a high-quality physical source of entropy cannot be compelled. It is highly recommended.
+This Schrödinger's bit we call `Red'. A difference between \texttt{branch} 0 and the \texttt{flip} operation is that the former may return anything at all, hopefully well-formed, while the latter must return either 0 or 1. Deriving this bit from a high-quality physical source of entropy cannot be compelled. It is highly recommended.
 
 In cryptography, Red bits derive their value from being unknown outside the computation. The simplest cryptographic scheme, the one-time pad, is simply shared entropy, XORed across the secret, consuming the entropy by contaminating it with a pattern. Although I have a question about that last part, which keeps me up at night. It should be the subject of another, shorter, and later, thesis.
 
@@ -734,7 +696,7 @@ We place the Red bit in the 11 position of the subject, in consonance with the o
 
 There remains, axiomatically, one operation, corresponding to the third, and last possible, rotation in space.
 
-\subsection{Cell}
+\subsubsection{Cell}
 
 \texttt{cell} is a simple enough operation. One simply is or one isn't. Our reality exhibits cellularity at several scales, including several at the seductively and subjectively interesting biological level.\footnote{To sketch those which make up a human, there are the subatomic, atomic, molecular, nuclear, cellular, organic, and personal, each exhibiting the common property of compactness and containment around a center.
 
@@ -746,35 +708,29 @@ We are unique among our kingdom for having almost a second form of life, certain
 
 Surely we may count above those the planet we inhabit, its Solar System, our Galaxy, and, multicellular and irregular in shape though they be, the galactic cluster, followed, ultimately as far as we know, by the Universe.}
 
-We represent the test for this quality with the number Six.
-
-Six is the smallest number which is \href{https://en.wikipedia.org/wiki/Perfect_number}{perfect}.
-
-Six has the pleasing property of being composable as 2 by 3, or 3 by 2. These representing the interesting classes of cells, which we could call the structural and the phrasal. Geometrically, six circles fit tangent to each other around a seventh circle of the same size, these numbers being twelve and thirteenth in the case of spheres.
+We represent the test for this quality with the number Six.  Six is the smallest number which is \href{https://en.wikipedia.org/wiki/Perfect_number}{perfect}.  Six has the pleasing property of being composable as 2 by 3, or 3 by 2. These representing the interesting classes of cells, which we could call the structural and the phrasal. Geometrically, six circles fit tangent to each other around a seventh circle of the same size, these numbers being twelve and thirteenth in the case of spheres.
 
 Let me stress that those pairs of numbers, the cardinal latter a double of the cardinal first, are the same member expressed cardinally and ordinarily.
 
 The sixfold harmony of the circle around itself has been associated with the angel Metatron since Antiquity. It is basic to our experience of geometry as living beings, as Buckminster Fuller extensively and with great idiom discusses in Synergetics. That circularity is suggestive of cellularity I take as an evident fact.
 
-Note that, once more, an even rule has two reductions.
-
-This is not a coincidence, because nothing is ever a coincidence.
+Note that, once more, an even rule has two reductions.  This is not a coincidence, because nothing is ever a coincidence.
 
 With this, the seventh of the axiomatic operations, numbered Six, we have a total; these are the operations collectively necessary to a well-formed automaton. Upon these we may rest a further foundation.
 
-\subsection{Idioms}
+% \subsection{Idioms}
 
-I will consider the Idioms in the ordinary order.\footnote{I didn't know quite what to call these. In some sense they're macros, but I think of them as having personality of their own. They serve to structure and condition the use of the axiomatic phrases, and otherwise retain some of the quality possessed by the axioms, of consonance between assignment of order and the resulting behavior.} I was inclined to discuss first even, then odd, as the odds are of a character, but I think this way is more legible.
+% I will consider the Idioms in the ordinary order.\footnote{I didn't know quite what to call these. In some sense they're macros, but I think of them as having personality of their own. They serve to structure and condition the use of the axiomatic phrases, and otherwise retain some of the quality possessed by the axioms, of consonance between assignment of order and the resulting behavior.} I was inclined to discuss first even, then odd, as the odds are of a character, but I think this way is more legible.
 
 \subsubsection{Compose}
 
 cgy wrote the idioms. I've adopted them, as sensible extensions. In this instance, our assignment of number is identical.
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [a 7 b c]        →    § [a 3 b 0 c]
 \end{lstlisting}
 
-This uses the \texttt{Nock} operation to distribute the subject across an object, b, subsequently providing this reduction as the subject of another phrase.
+This uses the \texttt{Nock} operation to distribute the subject across an object, \texttt{b}, subsequently providing this reduction as the subject of another phrase.
 
 As an odd reduction, there is only the one way to do it. Let's look again at the last demonstration:
 
@@ -782,7 +738,7 @@ As an odd reduction, there is only the one way to do it. Let's look again at the
 § [3 3 [[2 1] [1 2 1]] [0 2 1]]   →   [3 4]
 \end{lstlisting}
 
-Turns out that's already using this trick.
+% Turns out that's already using this trick.
 
 Function composition is inevitable in the Ax automaton, but worthwhile of marking, as higher operations are assuredly built upon it. We actually intend to follow this basic scheme well past the lemmas, through dictionary compression, assignment of an ordinal, and compilation of the elided strings. The result is simply run in its complex form, enriched with information we can extract during compilation.
 
@@ -794,139 +750,136 @@ It is canonical to test for the truth of a condition, performing the left or fir
 
 Though it can't affect correctness, it is a waste of energy to calculate the unchosen path. This requires \texttt{if} to be a `special form' in Lisp dialects, which have the additional problem of side effects, making this a requirement, not just a good idea.. In Ax it can be written as a simple term rewrite, with the unchosen condition discarded by branching on the choice of c or d.  Instead I have chosen to incorporate this object annihilation as a direct reduction.
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [a 8 b c d]      →    § [a b] → 1 → § [a c]
 § [a 8 b c d]      →    § [a b] → 0 → § [a d]
 \end{lstlisting}
 
 Eight is 2 raised to the 3rd power. It is in that sense, selective distribution across only one of two objects, the other annihilated.
 
-The decision to use a true Boolean, refusing to reduce an 8 which does not resolve § [a b] as either a 1 or 0, was ultimately guided by the low-ordering instinct. We don't yet have a test of relative atomic order, and when we do, it's not a hard problem to make that itself return 0 or 1.
+The decision to use a true Boolean, refusing to reduce an \texttt{8} which does not resolve \texttt{§ [a b]} as either a 1 or 0, was ultimately guided by the low-ordering instinct. We don't yet have a test of relative atomic order, and when we do, it's not a hard problem to make that itself return 0 or 1.
 
 The other Idioms are written in the macro form, simply because this is the more eloquent way to express their action. Writing a macro for 8 is good exercise for the interested Reader.
 
-\paragraph{On Truth}
+% \paragraph{On Truth}
 
-The keen-eyed reader may notice that a reduction that is True, resulting in 1, is always written before a reduction that is False, resulting in 0. This does invert an order we have been studious and insistent in following otherwise.
+% The keen-eyed reader may notice that a reduction that is True, resulting in 1, is always written before a reduction that is False, resulting in 0. This does invert an order we have been studious and insistent in following otherwise.
 
-This is out of our preference for truth, and greater clarity of explanation,  since the sense of the operation is to test for equality, cellularity, and now, truth itself. It's not that inequality and atomicity aren't interesting, but equality is single, inequality multiple, the same is true of the atom and the cell, and the result of a test must be binary if it is a test of the truth of a matter.
+% This is out of our preference for truth, and greater clarity of explanation,  since the sense of the operation is to test for equality, cellularity, and now, truth itself. It's not that inequality and atomicity aren't interesting, but equality is single, inequality multiple, the same is true of the atom and the cell, and the result of a test must be binary if it is a test of the truth of a matter.
 
-It is, in a way, a trick of the scroll. These two reductions are branches, in each case, only one of the two may be performed. One must come first, and that is the truth, out of respect for the writer of programs, who is generally following a trail of truth, where possible, and should be encouraged.
+% It is, in a way, a trick of the scroll. These two reductions are branches, in each case, only one of the two may be performed. One must come first, and that is the truth, out of respect for the writer of programs, who is generally following a trail of truth, where possible, and should be encouraged.
 
-Until recently, Ax followed the frankly absurd fad of using 0 to represent Truth, and 1 for Falsehood. This was inherited from Nock, which, incredibly, still does it. cgy has expressed his regrets. A bout of soul-searching, and some reading of George Boole in the original Queen's English, resulted in bringing the automaton in alignment with logic, custom, and common practice.
+% Until recently, Ax followed the frankly absurd fad of using 0 to represent Truth, and 1 for Falsehood. This was inherited from Nock, which, incredibly, still does it. cgy has expressed his regrets. A bout of soul-searching, and some reading of George Boole in the original Queen's English, resulted in bringing the automaton in alignment with logic, custom, and common practice.
 
-The familiar Algolic statement of the prime conditional is ``if this is true, then do this thing. else, do this other thing". Lisp and Forth use this structure also, Forth doing its usual permutation of the structure to postfix the `then`. The true path in each written before the false one.
+% The familiar Algolic statement of the prime conditional is ``if this is true, then do this thing. else, do this other thing". Lisp and Forth use this structure also, Forth doing its usual permutation of the structure to postfix the `then`. The true path in each written before the false one.
 
-We take the nigh-universal nature of this decision as evidence that it is normal to look for truths, and use them to guide our computations down the happy path.
+% We take the nigh-universal nature of this decision as evidence that it is normal to look for truths, and use them to guide our computations down the happy path.
 
-Let us note with great gentleness, but conviction nonetheless, that the left-hand path is the true path, and the right-hand path false.
+% Let us note with great gentleness, but conviction nonetheless, that the left-hand path is the true path, and the right-hand path false.
 
-This is despite of the ordering of c and d, which, were they subjects, would be 10 and 11. But they are not, they are objects, what Nock calls the formula, a powerful synonym. Perhaps we should imagine a reflection across the verb, making them instead 11 and 10. It will us do no harm to, as \texttt{branch} can't access the objective side of the phrase.
+% This is despite of the ordering of c and d, which, were they subjects, would be 10 and 11. But they are not, they are objects, what Nock calls the formula, a powerful synonym. Perhaps we should imagine a reflection across the verb, making them instead 11 and 10. It will us do no harm to, as \texttt{branch} can't access the objective side of the phrase.
 
-This reflection is peculiar to 8 as with the Ax operation the object is consumed head-to-tail, or left-to-right, or senseward, and we have seen that matches the enumeration of the branches of the subject. One may imagine another intelligence who simply chooses the base case to be false in this idiom. A good reason to consider it Idiomatic.
+% This reflection is peculiar to 8 as with the Ax operation the object is consumed head-to-tail, or left-to-right, or senseward, and we have seen that matches the enumeration of the branches of the subject. One may imagine another intelligence who simply chooses the base case to be false in this idiom. A good reason to consider it Idiomatic.
 
-It might be quite a bit easier, and is harmless, to simply grant that this is how this thing is done around here.
+% It might be quite a bit easier, and is harmless, to simply grant that this is how this thing is done around here.
 
-If, and only If.
+% If, and only If.
 
 \subsubsection{Extend}
 
-Again the name was chosen by cgy, who identified the pattern. The tenth operation, represented as 9, this can also be written as a macro:
+Again the name was chosen by cgy, who identified the pattern. The tenth operation, represented as \texttt{9}, this can also be written as a macro:
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [a 9 b c]          →    § [a 7 [[7 [2 1] b] 2 1] c]
 \end{lstlisting}
 
-To quote literally from the author ``8[sic] is 7, except that the subject for c is not simply the product of b, but the ordered pair of the product of b and the original subject."
+\noindent
+To quote \ldots{} the author ``[this] is \texttt{7}, except that the subject for \texttt{c} is not simply the product of \texttt{b}, but the ordered pair of the product of \texttt{b} and the original subject."
 
 \begin{lstlisting}[style=listingblock]
 § [3 3 [[2 1] [1 2 1]] [0 2 1]]   →   [3 4]
 \end{lstlisting}
 
-Does not emulate this precisely, but the effect is much the same. I'm not sure I like the placement of the intermediate product at 2 and the subject at 3. It feels backwards, insofar as the subject already existed and its new addition was just created, left is temporally before right when these words are used in their senseward, rather than their chiral, senses. So we should prefer an order.
+\noindent
+does not emulate this precisely, but the effect is much the same. I'm not sure I like the placement of the intermediate product at 2 and the subject at 3. It feels backwards, insofar as the subject already existed and its new addition was just created, left is temporally before right when these words are used in their senseward, rather than their chiral, senses. So we should prefer an order.
 
-I'm leaving it in this Nock-compatible form, for now. The more I think about it, the more I'm likely to reverse those. Might be a slightly longer macro.
+% I'm leaving it in this Nock-compatible form, for now. The more I think about it, the more I'm likely to reverse those. Might be a slightly longer macro.
 
-\subsubsection{Ten}
+\subsubsection{Hint}
 
-This is a set of two expansions which do nothing, each in its own way.\footnote{Editor's note:  to wit, the hint operator, opcode 11 in Nock 4K.}
-
-The Nock automaton takes a firm stance that neither input nor output are to be handled at the bottom layer. Ultimately this is because down that road lies \href{https://wiki.haskell.org/Monad}{Monads}, and if you don't fear and distrust \href{https://en.wikipedia.org/wiki/Monad}{monads} in 2017 I wish I shared your jaunty mein.
+This is a set of two expansions which do nothing, each in its own way.\footnote{Editor's note:  to wit, the hint operator, opcode \texttt{11} in Nock 4K.}  The Nock automaton takes a firm stance that neither input nor output are to be handled at the bottom layer.\footnote{Ultimately this is because down that road lie \href{https://wiki.haskell.org/Monad}{Monads}, and if you don't fear and distrust \href{https://en.wikipedia.org/wiki/Monad}{monads} in 2017 I wish I shared your jaunty mein.}
 
 This means that information is discovered within the subject on `cards', acted upon, and then cards are `released' into the wild, exiting the computation. The Ten operation, which shares its place in Nock and Ax, is not there used for this later `releasing'. Instead it is used for `hinting', a peculiar custom relating to jetting, which is not, peculiar that is, when you realize it's the familiar foreign function interface with a requirement that you write the entire library in the slow language as well. Jit and Jet are also caught by the pin-pen merger, which is droll.
 
-It is the hinting itself I deem unnecessary, if we simply continue the pattern which is becoming clear in the Idioms and is spelled out more explicitly in the Lemmas. That is ordinary dictionary compression; we proceed to assign natural numbers to particular nouns we encounter during compilation, save those nouns as the contents of the dictionary, and design and run the compressed Ax code directly, without bothering to consult the dictionary as to the definitive meaning, just a jump table (you knew it was a vtable). The dictionary itself, that is its structural representation as an Ax noun, could be as simple as an ordered list, if we wish it to be compact, or we could construct a balanced representation if we find ourselves consulting it frequently.
+It is the hinting itself I deem unnecessary, if we simply continue the pattern which is becoming clear in the Idioms and is spelled out more explicitly in the Lemmas. That is ordinary dictionary compression; we proceed to assign natural numbers to particular nouns we encounter during compilation, save those nouns as the contents of the dictionary, and design and run the compressed Ax code directly, without bothering to consult the dictionary as to the definitive meaning, just a jump table (you knew it was a \texttt{vtable}). The dictionary itself, that is its structural representation as an Ax noun, could be as simple as an ordered list, if we wish it to be compact, or we could construct a balanced representation if we find ourselves consulting it frequently.
 
-A custom of using such a dictionary is somewhat metacircular, as you'd build it in the higher-level language, thereby establishing structural requirements for decoding the dictionary itself. But this is necessary anyway in establishing the next layer of abstraction. It does not increase the complexity of the Ax spec, following its spirit as well as its letter by simply continuing to build operations in the now familiar way.
+A custom of using such a dictionary is somewhat meta\-circular, as you'd build it in the higher-level language, thereby establishing structural requirements for decoding the dictionary itself. But this is necessary anyway in establishing the next layer of abstraction. It does not increase the complexity of the Ax spec, following its spirit as well as its letter by simply continuing to build operations in the now familiar way.
 
 These cannot be universal, or maybe they can be; for my part, I view the Lemmas as sharing some of the inevitable nature of correspondence, but not so much that I would want to continue down that path further. I'll return to this theme at the proper time.
 
 What then do we wish for Ten? Let us view it:
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [a 10 b c]       →    § [a c]
 § [a 10 [b c] d]   →    § [a 9 c 7 [2 3] d]
 \end{lstlisting}
 
-We see that the first just annihilates b. It's like the reverse of 0, which is pleasant, as the second place in the decimal system where the Zero appears.\footnote{In binary it is 1010, which is pretty neat actually, it's like 10 is O-10, if a Japanese-`Arabic' (Hindu) construction may be indulged. Oh-ten-sei.}
+\noindent
+We see that the first just annihilates \texttt{b}. It's like the reverse of \texttt{0}, which is pleasant, as the second place in the decimal system where the Zero appears.\footnote{In binary it is \texttt{1010}, which is pretty neat actually, it's like \texttt{10} is O-10, if a Japanese-`Arabic' (Hindu) construction may be indulged. \emph{Oh-ten-sei}.}  As is proper to any operation ending in 0, it has two reductions. The second does \texttt{§ [b c]} and discards it, moving on to \texttt{§ [a d]}. So what's useful about this? This could cause a side-effect, like printing a variable.
 
-As is proper to any operation ending in 0, it has two reductions. The second does § [b c] and discards it, moving on to  § [a d]. So what's useful about this? This could cause a side-effect, like printing a variable, or whatever.
+\sloppy
+I would think it more proper to make more use of Ten, the \texttt{toss} operator. In particular I might want \texttt{b} in the first reduction to resolve undefined behavior along branch 0 of another Ax computation, building thereby an Axtor model of cooperative behavior between small, well-defined, predictable \mbox{computers}.\footnote{The 10th Sephiroth is Malkuth, the Kingdom. This is where another, denser layer of reality begins in the ladder-like Tree of Life. I think this reflects the Phoenician/Canaanite/Hebrew (these terms are somewhat but not completely interchangeable) alphabet, where the first nine marks are 1-9, the next ten are 10-90, and then we get some number of marks in the 100 series as well.}
 
-I would think it more proper to make more use of Ten, the \texttt{toss} operator. In particular I might want b in the first reduction to resolve undefined behavior along branch 0 of another Ax computation, building thereby an Axtor model of cooperative behavior between small, well-defined, predictable computers.\footnote{The 10th Sephiroth is Malkuth, the Kingdom. This is where another, denser layer of reality begins in the ladder-like Tree of Life. I think this reflects the Phoenecian/Caananite/Hebrew (these terms are somewhat but not completely interchangeable) alphabet, where the first nine marks are 1-9, the next ten are 10-90, and then we get some number of marks in the 100 series as well.}
+% The radix we use in everyday life is 10. Our fingers? I mean of course our fingers. It does have some kind of virtue as the lowest even number containing an additional prime factor that isn't three; but what virtue is that precisely?
 
-The radix we use in everyday life is 10. Our fingers? I mean of course our fingers. It does have some kind of virtue as the lowest even number containing an additional prime factor that isn't three; but what virtue is that precisely?
+% Babylonians attempted to solve this with an odd system that's basically base-60, and yeah I can kinda see that. Still works for clocks.
 
-Babylonians attempted to solve this with an odd system that's basically base-60, and yeah I can kinda see that. Still works for clocks.
+% But I still count on my fingers. Humans gonna human.
 
-But I still count on my fingers. Humans gonna human.
+\subsection{Invocation}
 
-\subsection{Invocation (Eleven)}
-
-Hail Muse! Be merciful
-
+\begin{quote}
+Hail Muse! Be merciful, \\
 In bending our arc toward beauty.
+\end{quote}
 
-The 11 operator describes what Hoon calls a `core'.
+The \texttt{11} operator describes what Hoon calls a `core'.
 
-\begin{lstlisting}[style=listingblock]
+\begin{lstlisting}[style=listingcode]
 § [a 11 b c]       →    § [a 7 c 3 [2 1] 2 b]
 \end{lstlisting}
 
-Now I think this is a pretty macro, with that \texttt{3 2 1} streak in it.
+\noindent
+Now I think this is a pretty macro, with that \texttt{3 2 1} streak in it.  Are we still in the realm of inevitability?
 
-Are we still in the realm of inevitability?
-
-The cardinal properties of numbers become more complex, as a rule, as they get further from the origin. For instance a number with many prime factors has qualities specific to each of those factors, and each of their combinations. This can get out of hand, let us say. It's less than clear how to paint a total picture, past a point.
+The cardinal properties of numbers become more complex, as a rule, as they get further from the origin. For instance a number with many prime factors has qualities specific to each of those factors, and each of their combinations. %This can get out of hand, let us say. It's less than clear how to paint a total picture, past a point.
 
 Eleven has the virtue of being prime, at least. It is the last of our five Idioms; after this we will briefly discuss the Lemmas, and leave you with some musings on implementation.
 
-cgy stops counting at 10, leaving him with 11 operations in total. Thanks to our lucky \texttt{flip} operation, we have 12 total, which must enumerate to 11, sure as you're born.\footnote{I picked cardinal 12 as my number, nominating my seat on the Senate and what have you. The Senate has an order, this is structurally inevitable, but it is membership in the set 1-255 inclusive which is distinctive. \patp{zod} being the primus inter process, but not pares, as a sitting Senate will not have a speaker for \patp{zod}. Curtis Guy Yarvin and Galen Wolfe-Pauley are the consuls, who serve on behalf of the Senate and the Urbit, not \patp{zod} per se. The numbers are strictly nominal, sort of. Certainly the \texttt{@p} phonemic mappings encourage thinking in those terms.
-
-I chose the Carrier Emperor Constantine for nominal reasons, but am content with its cardinality also. I also applaud the transition from naval warfare to astronomy as the source of metaphor. Perhaps ~wep shall be the Constantine Cluster. Or the Greater Constellanic Cloud.}
-
-I'll just say it's unclear what's inevitable. I'm pretty sure 9's backward and it may get stuck that way. 11 is even harder to make a case for, I guess, but trace it, it's a good reduction.
+cgy stops counting at 10, leaving him with 11 operations in total. Thanks to our lucky \texttt{flip} operation, we have 12 total, which must enumerate to 11, sure as you're born.%\footnote{I picked cardinal 12 as my number, nominating my seat on the Senate and what have you. The Senate has an order, this is structurally inevitable, but it is membership in the set 1-255 inclusive which is distinctive. \patp{zod} being the primus inter process, but not pares, as a sitting Senate will not have a speaker for \patp{zod}. Curtis Guy Yarvin and Galen Wolfe-Pauley are the consuls, who serve on behalf of the Senate and the Urbit, not \patp{zod} per se. The numbers are strictly nominal, sort of. Certainly the \texttt{@p} phonemic mappings encourage thinking in those terms.
+%
+%I chose the Carrier Emperor Constantine for nominal reasons, but am content with its cardinality also. I also applaud the transition from naval warfare to astronomy as the source of metaphor. Perhaps ~wep shall be the Constantine Cluster. Or the Greater Constellanic Cloud.}
+I'll just say it's unclear what's inevitable. I'm pretty sure 9's backward and it may get stuck that way. \texttt{11} is even harder to make a case for, I guess, but trace it, it's a good reduction.
 
 \subsection{Lemmas}
 
-The Lemmas are \emph{optional} from where I sit. If you came to me and said ``Sam, I just want a bunch of bitwise to come after the Idioms, it's what makes sense to me" I'd understand that impulse.
+% The Lemmas are \emph{optional} from where I sit. If you came to me and said, ``Sam, I just want a bunch of bitwise to come after the Idioms, it's what makes sense to me," I'd understand that impulse.
 
-The Lemmas are provided as a fulfillment of the definition of atoms as `natural numbers'. They don't provide all the properties of the natural numbers we call arithmetic, but they provide the core properties.
+% The Lemmas are provided as a fulfillment of the definition of atoms as `natural numbers'. They don't provide all the properties of the natural numbers we call arithmetic, but they provide the core properties.
 
-Or do they? Increment is of course special, is decrement? I think so, I start with decrement because the \texttt{up} operator is the only axiomatic way to do arithmetic on an atom and decrement is its complement. Also we're at 12, cardinally, and that suggests two reductions; since one cannot decrement 0, that fits.
+% Or do they? Increment is of course special---is decrement? I think so, I start with decrement because the \texttt{up} operator is the only axiomatic way to do arithmetic on an atom and decrement is its complement. Also we're at 12, cardinally, and that suggests two reductions; since one cannot decrement 0, that fits.
 
-But is modulus really more important than exponentiation? The thing is, at some point I don't want to play that game. Or I want to relax the rules a bit. These assignments are nominal, not cardinal; it provides clarity, consonance, to make the associations in alignment with the cardinal and ordinal virtues of number, but those get harder to cleanly explicate the larger the numbers get.
+% But is modulus really more important than exponentiation? The thing is, at some point I don't want to play that game. Or I want to relax the rules a bit. These assignments are nominal, not cardinal; it provides clarity, consonance, to make the associations in alignment with the cardinal and ordinal virtues of number, but those get harder to cleanly explicate the larger the numbers get.
 
-I don't want to get in arguments about which of 17 and 19 is modulus and which is power. I just don't, who has time for that? Do we include factorial or just force junior developers to implement it in interviews?
+% I don't want to get in arguments about which of 17 and 19 is modulus and which is power. I just don't, who has time for that? Do we include factorial or just force junior developers to implement it in interviews?
 
-There are those among you who will always feel this whole treatise is just exactly that argument. To which I reply: this is why 17 and 18 is defined on one abstraction layer and 19 on the other. I will stand firmly for the axiomatic set of operations and the order I've provided them in, am open to exploration on the Idioms, consider the Lemmas a reasonable effort, and then think our attention is more fruitfully directed elsewhere.
+% There are those among you who will always feel this whole treatise is just exactly that argument. To which I reply: this is why 17 and 18 is defined on one abstraction layer and 19 on the other. I will stand firmly for the axiomatic set of operations and the order I've provided them in, am open to exploration on the Idioms, consider the Lemmas a reasonable effort, and then think our attention is more fruitfully directed elsewhere.
 
-I include the Lemmas for two reasons. The first is to provide for the operations on natural numbers I consider basic. The cell is of much more recent innovation, and being protean and multiple, of an entirely different order of complexity, at least to a human mind. The two words `natural numbers' bring in a huge amount of prior art, and this assuredly includes things like comparison and division, and yes, I consider modulus more basic than power, which compounds through repetition an operation that is already compounded thorough repetition, while cyclic arithmetic is the basis of everything recurrent in a regular or harmonic way. It belongs after division, which must have two reductions to forbid zero, because modulus completes division by providing the remainder.
+I include the Lemmas for two reasons. The first is to provide for the operations on natural numbers I consider basic. The cell is of much more recent innovation, and being protean and multiple, of an entirely different order of complexity, at least to a human mind. The two words `natural numbers' bring in a huge amount of prior art, and this assuredly includes things like comparison and division, and yes, I consider modulus more basic than power, which compounds through repetition an operation that is already compounded through repetition, while cyclic arithmetic is the basis of everything recurrent in a regular or harmonic way. It belongs after division, which must have two reductions to forbid zero, because modulus completes division by providing the remainder.
 
 The second is to indicate the path forward. Ax as a compiler target with a dictionary assembled from foreign function interfaces written in a language which expects to be represented on an Ax-class automaton. Multiplication being 15, 31 might be a nice spot on the shelf for power, might not. At some point we want to start organizing by common utility, in the familiar library pattern.
 
 That's Hoon, basically. At first, and rebuilt utterly below C level.
-
-\emph{The remaining commentary of the document, including a discussion of Hoon and various acknowledgements, are here omitted and you are directed to the original document at \url{https://github.com/mnemnion/ax/blob/master/comment.md}.}
 
 \selectlanguage{USenglish}
 %\printbibliography
