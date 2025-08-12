@@ -16,7 +16,7 @@
 \fancyfoot[L]{{\footnotesize
               %% We toggle between these:
               % Manuscript submitted for review.\\
-              {\it Urbit Systems Technical Journal} II:1 (2025):  189–50. \\
+              {\it Urbit Systems Technical Journal} II:1 (2025):  189–225. \\
               ~ \\
               Address author correspondence to \authorpatp.
               }}
@@ -212,7 +212,7 @@ Note that all even-numbered operators and idioms have exactly two expansions, th
 \paragraph{Five}
 
 \texttt{5} is the \texttt{fz} operator, one of the \emph{raisons d'être} for Ax versus Nock.  %Note that in Plan Ax from Conk Space, 5 is \texttt{cel}. 
-Fully qualified Ax machines are not deterministic, because they aren't colorblind. In addition to Black and White bits, Ax machines must supply Red bits, which are completely different because they come from an actual, high quality source of entropy. Note that, while weird, this is just as well formed as saying ``an actual, high quality source of numeric computations", in that you can just hop on the Internet and buy one. Ax machines must have both.
+Fully qualified Ax machines are not deterministic, because they aren't colorblind. In addition to Black and White bits, Ax machines must supply Red bits, which are completely different because they come from an actual, high-quality source of entropy. Note that, while weird, this is just as well formed as saying ``an actual, high-quality source of numeric computations", in that you can just hop on the Internet and buy one. Ax machines must have both.
 
 This is why \texttt{fz} must be an operator, not a lemma. The Second Law of Thermodynamics is taken as axiomatic for our purposes; within the specification, the method of selecting on the range is deliberately left unspecified.
 
@@ -759,7 +759,7 @@ Eight is 2 raised to the 3rd power. It is in that sense, selective distribution 
 
 The decision to use a true Boolean, refusing to reduce an \texttt{8} which does not resolve \texttt{§ [a b]} as either a \texttt{1} or \texttt{0}, was ultimately guided by the low-ordering instinct. We don't yet have a test of relative atomic order, and when we do, it's not a hard problem to make that itself return \texttt{0} or \texttt{1}.
 
-The other Idioms are written in the macro form, simply because this is the more eloquent way to express their action. Writing a macro for 8 is good exercise for the interested Reader.
+% The other Idioms are written in the macro form, simply because this is the more eloquent way to express their action. Writing a macro for 8 is good exercise for the interested Reader.
 
 % \paragraph{On Truth}
 
@@ -811,11 +811,14 @@ This is a set of two expansions which do nothing, each in its own way.\footnote{
 
 This means that information is discovered within the subject on `cards', acted upon, and then cards are `released' into the wild, exiting the computation. The Ten operation, which shares its place in Nock and Ax, is not there used for this later `releasing'. Instead it is used for `hinting', a peculiar custom relating to jetting, which is not, peculiar that is, when you realize it's the familiar foreign function interface with a requirement that you write the entire library in the slow language as well. Jit and Jet are also caught by the pin-pen merger, which is droll.
 
-It is the hinting itself I deem unnecessary, if we simply continue the pattern which is becoming clear in the Idioms and is spelled out more explicitly in the Lemmas. That is ordinary dictionary compression; we proceed to assign natural numbers to particular nouns we encounter during compilation, save those nouns as the contents of the dictionary, and design and run the compressed Ax code directly, without bothering to consult the dictionary as to the definitive meaning, just a jump table (you knew it was a \texttt{vtable}). The dictionary itself, that is its structural representation as an Ax noun, could be as simple as an ordered list, if we wish it to be compact, or we could construct a balanced representation if we find ourselves consulting it frequently.
+It is the hinting itself I deem unnecessary, if we simply continue the pattern which is becoming clear in the Idioms and is spelled out more explicitly in the Lemmas. That is ordinary dictionary compression; we proceed to assign natural numbers to particular nouns we encounter during compilation, save those nouns as the contents of the dictionary, and design and run the compressed Ax code directly, without bothering to consult the dictionary as to the definitive meaning, just a jump table (you knew it was a \texttt{vtable}). The dictionary's
+%itself
+%, that is its
+structural representation as an Ax noun could be as simple as an ordered list, if we wish it to be compact, or we could construct a balanced representation if we find ourselves consulting it frequently.
 
 A custom of using such a dictionary is somewhat meta\-circular, as you'd build it in the higher-level language, thereby establishing structural requirements for decoding the dictionary itself. But this is necessary anyway in establishing the next layer of abstraction. It does not increase the complexity of the Ax spec, following its spirit as well as its letter by simply continuing to build operations in the now familiar way.
 
-These cannot be universal, or maybe they can be; for my part, I view the Lemmas as sharing some of the inevitable nature of correspondence, but not so much that I would want to continue down that path further. I'll return to this theme at the proper time.
+These cannot be universal, or maybe they can be; for my part, I view the Lemmas as sharing some of the inevitable nature of correspondence, but not so much that I would want to continue down that path further. %I'll return to this theme at the proper time.
 
 What then do we wish for Ten? Let us view it:
 
@@ -854,8 +857,7 @@ Now I think this is a pretty macro, with that \texttt{3 2 1} streak in it.  Are 
 
 The cardinal properties of numbers become more complex, as a rule, as they get further from the origin. For instance a number with many prime factors has qualities specific to each of those factors, and each of their combinations. %This can get out of hand, let us say. It's less than clear how to paint a total picture, past a point.
 
-Eleven has the virtue of being prime, at least. It is the last of our five Idioms; after this we will briefly discuss the Lemmas, and leave you with some musings on implementation.
-
+Eleven has the virtue of being prime, at least. It is the last of our five Idioms. %; after this we will briefly discuss the Lemmas, and leave you with some musings on implementation.
 cgy stops counting at 10, leaving him with 11 operations in total. Thanks to our lucky \texttt{flip} operation, we have 12 total, which must enumerate to 11, sure as you're born.
 %\footnote{I picked cardinal 12 as my number, nominating my seat on the Senate and what have you. The Senate has an order, this is structurally inevitable, but it is membership in the set 1-255 inclusive which is distinctive. \patp{zod} being the primus inter process, but not pares, as a sitting Senate will not have a speaker for \patp{zod}. Curtis Guy Yarvin and Galen Wolfe-Pauley are the consuls, who serve on behalf of the Senate and the Urbit, not \patp{zod} per se. The numbers are strictly nominal, sort of. Certainly the \texttt{@p} phonemic mappings encourage thinking in those terms.
 %
