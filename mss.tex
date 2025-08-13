@@ -1,6 +1,7 @@
 \documentclass[twoside]{article}
 
 \usepackage{ustj}
+\renewcommand{\headrulewidth}{0pt}
 
 \addbibresource{mss.bib}
 
@@ -16,16 +17,16 @@
 \fancyfoot[L]{{\footnotesize
               %% We toggle between these:
               % Manuscript submitted for review.\\
-              {\it Urbit Systems Technical Journal} II:1 (2025):  189–225. \\
+              {\it Urbit Systems Technical Journal} II:1 (2025):  191–227. \\
               ~ \\
               Address author correspondence to \authorpatp.
               }}
 }
 %  Arrange subsequent pages:
 \fancyhf{}
-\fancyhead[LE]{{\urbitfont Urbit Systems Technical Journal}}
-\fancyhead[RO]{Conk \& Ax}
-\fancyfoot[LE,RO]{\thepage}
+% \fancyhead[LE]{{\urbitfont Urbit Systems Technical Journal}}
+% \fancyhead[RO]{Conk \& Ax}
+% \fancyfoot[LE,RO]{\thepage}
 
 %%MANUSCRIPT
 \title{Conk:  The Permutation 
@@ -42,12 +43,13 @@ Group of Nocks \\ Ax:  An Algebraic Executable Ur-Machine}
 \thispagestyle{firststyle}
 
 \begin{abstract}
-Conk, the permutation group of 720 Nock machines based on the ordering of primitive opcodes \texttt{0}--\texttt{5}, is introduced.  Ax is a specific cellular automaton for general purpose computation (a subclass disjoint by one member from Conk).  First developed as a thought experiment on a Nock-like combinator calculus, Ax seeks to build a logical order of operators in sequence, starting from the definition of a noun.  This historical document presents and explores Conk, Ax, and their ramifications for Nock-style combinator computing.
+\sloppy
+Conk, the permutation group of 720 Nock machines based on the ordering of primitive opcodes \texttt{0}--\texttt{5}, is \mbox{introduced}.  Ax is a specific cellular automaton for general purpose computation (a subclass disjoint by one member from Conk).  First developed as a thought experiment on a Nock-like combinator calculus, Ax seeks to build a logical order of operators in sequence, starting from the definition of a noun.  This historical document presents and explores Conk, Ax, and their ramifications for Nock-style combinator computing.
 \end{abstract}
 
 % We will adjust page numbering in final editing.
 \pagenumbering{arabic}
-\setcounter{page}{189}
+\setcounter{page}{191}
 
 \tableofcontents
 
