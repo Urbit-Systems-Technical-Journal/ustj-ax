@@ -17,7 +17,7 @@
 \fancyfoot[L]{{\footnotesize
               %% We toggle between these:
               % Manuscript submitted for review.\\
-              {\it Urbit Systems Technical Journal} II:1 (2025):  191–227. \\
+              {\it Urbit Systems Technical Journal} II:1 (2025):  191–228. \\
               ~ \\
               Address author correspondence to \authorpatp.
               }}
@@ -196,7 +196,7 @@ How many operators does it take to write an infinite loop? I am curious, without
 
 \texttt{3} is the \texttt{ax} operator, \texttt{Ax}, which Nocks a noun apart and evals it. The symbol \texttt{nck} is also reserved for this operator, en homage. %Why 3? Well, that's a digression, while I'll gloss over.
 
-Consider that there are two ways to index: by zero, and by one. What if you want to contain the damage? Well, you could count \texttt{(0|1) (1|2) (2|3) 4 5 6}, or \texttt{(0|1) (0|1) (2|3) (3|4) 4, 5, 6}. The latter is taxing on our already strained resources. 
+Consider that there are two ways to index: by zero, and by one. What if you want to contain the damage? Well, you could count \texttt{(0|1) (1|2) (2|3) 4 5 6}, or \texttt{(0|1) (0|1) (2|3) (3|4) 4 5 6}. The latter is taxing on our already strained resources. 
 
 In certain circles this difficulty is referred to as the ``Abyss". My solution to this difficulty is suggested by ancient texts but the interpretation is to my knowledge completely original. We are all fairly certain the mystery involves both \texttt{3} and \texttt{11}. Let's leave it at that for now.\footnote{\texttt{Ax} could be \texttt{2}, but \texttt{branch} could not be 3, or we would have \texttt{[2 1 3 1]}, and where did that three come from? Also, branch on address \texttt{3} is not defined in the reductions.}
 
@@ -226,7 +226,7 @@ The demonstration Ax machine uses Pink bits, which are only pseudorandom. This i
 
 \texttt{5} has several expansions, for, among other reasons, compatibility with Hoon. Any Conk runs fine on a Xa, but for safety, we have an Ax rule that takes a \texttt{fz} result and \texttt{put}s it away, \texttt{is}ing a \texttt{0} instead, and then using the \texttt{0} to \texttt{is} the subject, turning it into a no-op. Anything \texttt{fz} \texttt{mul} \texttt{is 0} will return \texttt{0}, another convenient way of ignoring entropy. Lastly, one may expand \texttt{fz} by checking \texttt{branch 0} for \texttt{1} or \texttt{0}, discarding the result in the former case; this may easily be implemented as an on-off switch for an indeterminate function.
 
-Lastly, note that randomness is not mentioned in the spec. It is actually perfectly valid for \texttt{fz} to return any number in the range: you may rewind Ax and play it again, or feed it nothing but [1] in all cases, or \texttt{0}, or anything else you'd like. The treatment of \texttt{5} and \texttt{branch 0} distinguishes the actual semantics of an Ax machine, as they introduce indeterminacy into the result. 
+Lastly, note that randomness is not mentioned in the spec. It is actually perfectly valid for \texttt{fz} to return any number in the range: you may rewind Ax and play it again, or feed it nothing but \texttt{[1]} in all cases, or \texttt{0}, or anything else you'd like. The treatment of \texttt{5} and \texttt{branch 0} distinguishes the actual semantics of an Ax machine, as they introduce indeterminacy into the result. 
 
 %Why 5? Zod, where else would you put it? 
 
@@ -241,7 +241,7 @@ Those are the axioms. I am totally convinced of \texttt{0}, \texttt{1}, \texttt{
 
 Note that we may generate \texttt{6} with \texttt{§ [4 5 [2 3]]}. Eventually, or immediately, depending on the Ax machine. This is considered beneath demonstration.
 
-The [ordering] of the idioms is basically Kabbalistic. That is the reasoning behind Ax space too. It happens to look like a Page from the Book, as Erdős Pál would say.
+The ordering of the idioms is basically Kabbalistic. That is the reasoning behind Ax space too. It happens to look like a Page from the Book, as Erdős Pál would say.
 
 \subsubsection{Idioms}
 
@@ -257,7 +257,7 @@ I could make a firm case for \texttt{dec} as consonant to \texttt{inc} and \text
 
 \subsubsection{Lemmas}
 
-Ax comes equipped with the operations you'll need to have a reasonable Big O on integer algorithms.
+Ax comes equipped with the operations you'll need to have a reasonable Big $O$ on integer algorithms.
 
 % You're welcome.
 
@@ -265,10 +265,10 @@ Ax comes equipped with the operations you'll need to have a reasonable Big O on 
 
 There are four changes between Nock and Ax: the permutation of the operations, the addition of \texttt{fz}, \texttt{branch 0}, and the \texttt{put} operator, to list them in order of seriousness. I have made the case, I believe, that the permutations put the jewel in the heart of the lotus. Perhaps we merely gild the lily. This is a matter of taste, not semantics, but without taste, Nock is pointless. I have devoted a number of paragraphs to \texttt{fz} already. Let's discuss \texttt{branch 0} and \texttt{put}.
 
-\texttt{branch 0} provides for a very simple and ordinary thing: a number that comes from Outside, that we can only determine if we go and look. A port, say, or a sensor. I don't know how Hoon deals with this, but I know that Nock does not handle it at all. Ax does: you can hook a very simple piece of Ax up to a sensor and do things with the numbers. I consider this a virtue in a toy computer, and the zero branch was just sitting there being undefined. 
+\texttt{branch 0} provides for a very simple and ordinary thing: a number that comes from Outside, that we can only determine if we go and look. A port, say, or a sensor. Nock does not explicitly handle such at all (a subject constructor must provide it to a formula). Ax does: you can hook a very simple piece of Ax up to a sensor and do things with the numbers. I consider this a virtue in a toy computer, and the zero branch was just sitting there being undefined. 
 
-I suggest a pleasant detour over to \href{http://thoughtmesh.net/publish/367.php}{``Undefined Intimacy With the Machine''}. %It is not only a product of the Cathedral, it is from a field of \emph{critical studies}, called code studies, of course. (This guy is right out on the bleeding edge, my friends.)
-Not all code talks to Outside, but most code comes from Somewhere, and sometimes Somewhere might want to drop a noun or two into the mix. I gather this isn't what you do with Nock, and again, I bet Hoon provides it. The thing is that Ax machines make no assumption that the whole system is going to be running on one core, in fact they're decidedly more comfortable if that is not the case. 
+I suggest a pleasant detour over to \href{http://thoughtmesh.net/publish/367.php}{``Undefined Intimacy With the Machine''} \citep{Buswell2010}. %It is not only a product of the Cathedral, it is from a field of \emph{critical studies}, called code studies, of course. (This guy is right out on the bleeding edge, my friends.)
+Not all code talks to Outside, but most code comes from Somewhere, and sometimes Somewhere might want to drop a noun or two into the mix. While this is what you do with Nock in practice, a runtime or operating context must provide it. The thing is that Ax machines make no assumption that the whole system is going to be running on one core, in fact they're decidedly more comfortable if that is not the case. 
 
 Could we run Ax machines on a ColorForth array? %Zod man, what else are they good for?
 The Parallela is a less exotic target; if you know any OpenCL, the interaction between \texttt{branch 0} and \texttt{put} might be putting you in mind of a ``kernel". %Excellent! We're on the same page. 
@@ -326,15 +326,15 @@ This is not to denigrate the \href{https://en.wikipedia.org/wiki/Nicolas_Bourbak
 
 Dijkstra himself was emphatically a mathematician. Would we say the same of Ken Thompson and Rob Pike? Of course not, they are engineers. Yet the \href{https://en.wikipedia.org/wiki/UTF-8#History}{\textsc{utf}-8 encoding} is poised to be the very substance of human language for as long as our civilization lasts. The great work of unifying all systems of writing, undoing at least one small fraction of the disaster at Babel, or, if you prefer historicity to metaphor, succeeding for the first time in this great cause; if this is not mathematics, what then \emph{is} mathematics? If you don't see a \href{https://en.wikipedia.org/wiki/Erdős_Pál}{Page from the Book} in the encoding diagram for \textsc{utf}-8, dear Reader, venture elsewhere. You're not going to like the rest of this.
 
-The actual encoding of Unicode onto the bits and bytes is fairly good engineering, all things considered. Like all engineering, it is riddled with compromise, partial backwards compatibility, rancorous dispute, and all manner of path-dependent weirdness. As a glance at the Wiki will show, the 6-byte \textsc{utf}-8 is the true \textsc{utf}-8, and we are presently burdened with a paltry 21 bits of encoding for no good reason at all. That this is a mistake, when designing a living standard with a one-way ratchet which admits mappings but cannot expel them, is a point I consider evident.
+The actual encoding of Unicode onto bits and bytes is fairly good engineering, all things considered. Like all engineering, it is riddled with compromise, partial backwards compatibility, rancorous dispute, and all manner of path-dependent weirdness. (A glance at the Wiki will show the 6-byte \textsc{utf}-8 is the true \textsc{utf}-8; we are burdened with a paltry 21 bits of encoding for no good reason at all.) That this is a mistake, when designing a living standard with a one-way ratchet which admits mappings but cannot expel them, is a point I consider evident.
 
 To return to our topic, Nock is presented as foundational system software, \href{https://urbit.org}{Urbit} as an existence proof of its fitness to purpose. Very well, but \href{https://en.wikipedia.org/wiki/EBCDIC}{\textsc{ebcdic}} was fit to \textsc{ibm}'s purpose also. Is Nock an \textsc{ebcdic} or is it the real-deal \textsc{utf}-8?
 
-Where the success of Urbit is concerned, cgy is a pig and I am a chicken. You see, one day the chicken said to the pig, ``Let's open up a diner. We can call it Ham and Eggs". The pig said ``Ehhh, I don't know about that. Sounds like you're just invested, but I'm committed". I wasn't the chicken in the anecdote, don't know which Tlön investor was, regardless, I have laid my egg, and received my Dukedom, in the form of the \href{https://en.wikipedia.org/wiki/Aircraft_carrier}{carrier}\footnote{At an early stage in Urbit's Azimuth \textsc{pki}, the metaphor for hierarchical points ran from carrier through cruisers, destroyers, yachts, to submarines.} Emperor \href{https://en.wikipedia.org/wiki/Constantine_(disambiguation)}{Constantine}, now transformed into seat 12 on the \href{https://urbit.org/~~/posts/constitution/}{Galactic} \href{https://en.wikipedia.org/wiki/Roman_Senate}{Senate}, all of which appeals to my roleplaying sensibilities. Curtis is all in; one senses he feels the fate of the world may rest on his shoulders, and who is to say it doesn't. In any case, he must either bring home the bacon, or become it.
+Where the success of Urbit is concerned, cgy is a pig and I am a chicken. You see, one day the chicken said to the pig, ``Let's open up a diner. We can call it Ham and Eggs". The pig said ``Eh, I don't know about that. Sounds like you're just invested, but I'm committed". I wasn't the chicken in the anecdote, don't know which Tlön investor was, regardless, I have laid my egg, and received my Dukedom, in the form of the \href{https://en.wikipedia.org/wiki/Aircraft_carrier}{carrier}\footnote{At an early stage in Urbit's Azimuth \textsc{pki}, the metaphor for hierarchical points ran from carrier through cruisers, destroyers, yachts, to submarines.} Emperor \href{https://en.wikipedia.org/wiki/Constantine_(disambiguation)}{Constantine}, now transformed into seat 12 on the \href{https://urbit.org/~~/posts/constitution/}{Galactic} \href{https://en.wikipedia.org/wiki/Roman_Senate}{Senate}, all of which appeals to my roleplaying sensibilities. Curtis is all in; one senses he feels the fate of the world may rest on his shoulders, and who is to say it doesn't. He must either bring home the bacon, or become it.
 
-I find myself in this peculiar position because I was promised \href{https://moronlab.blogspot.com/}{Maxwell's Laws of Software}, the firm foundation on which we may at last rest a computational edifice which actually makes sense. The better comparison is to the \href{https://en.wikipedia.org/wiki/Euclid%27s_Elements}{Elements of Geometry}, four axiomatic propositions which remain true, and one which remains good, thousands of years after their release into the wild.
+I find myself in this peculiar position because I was promised \href{https://moronlab.blogspot.com/}{Maxwell's Laws of Software}, the firm foundation on which we may at last rest a computational edifice which actually makes sense \citep{Yarvin2010d}. The better comparison is to the \href{https://en.wikipedia.org/wiki/Euclid%27s_Elements}{Elements of Geometry}, four axiomatic propositions which remain true, and one which remains good, thousands of years after their release into the wild.
 
-Curtis finds himself here because he believes he has found them. I believe he came very close. A confession: until I actually visited Tlön in late 2013, I harbored a suspicion that Curtis had permuted the operators of Nock as a test. At the time he was awarding Dukedoms as prizes for implementing decrement in Nock, and it seemed at least possible he was playing his cards close to the vest, to see if anyone else would notice. Perhaps he published a hash of the true Nock to a blockchain, as a reveal that he had priority.
+Curtis finds himself here because he believes he has found them. I believe he came very close. A confession: until I actually visited Tlön in late 2013, I harbored a suspicion that Curtis had permuted the operators of Nock as a test.\footnote{Editor's note:  compare the alchemical practice of ``fulminating gold''.} At the time he was awarding Dukedoms as prizes for implementing decrement in Nock, and it seemed at least possible he was playing his cards close to the vest, to see if anyone else would notice. Perhaps he published a hash of the true Nock to a blockchain, as a reveal that he had priority.
 
 This is still possible; due to the loobean nature of Nock (which reminds me of nothing so much as Pig Latin), and Ax's faithful attempt to remain compatible with it, the structure of Ax can perhaps admit of further improvement.\footnote{This realignment of Ax with the Boolean logic has been performed, and this decision is reflected in the rest of this document.} It's not the sense I'm getting, and I'll proceed as though Tlön in general considers Nock to admit no further improvement, and is building Urbit upon it on that basis. This is all complicated by the urgency a startup must feel to bring its product to market, and certainly I share their sense of mission. But the Laws of Software!
 
@@ -342,7 +342,7 @@ So I will make the case for Ax as clearly as I am able. I will make no great eff
 
 \subsection{Ax}
 
-Ax is a computational automaton, based upon a formalism called a noun. Automaton, meaning its reductions are mechanical; we simply go down the list of reductions, in order, performing the first one we are able, and do this repeatedly until we either have a noun that admits no further reduction, or until we find ourselves in a trivial loop and grow weary, or until the Universe runs out of syntropy with which to drive the mechanics further. Or we get bored. Whichever comes first.
+Ax is a computational automaton, based upon a formalism called a noun. Automaton, meaning its reductions are mechanical; we simply go down the list of reductions, in order, performing the first one we are able, and do this repeatedly until we either have a noun that admits no further reduction, or until we find ourselves in a trivial loop and grow weary, or until the Universe runs out of syntropy with which to drive the mechanics further. Whichever comes first.
 
 It has a \href{https://github.com/mnemnion/ax/blob/master/ax%20spec.md}{specification}. What then of the genus, what is a computational automaton?
 
@@ -374,11 +374,9 @@ The natural numbers have three cases, three essential senses in which they are m
 
 The second case is the ordinal case, where we say, ``this is the first", second, and so on. Note that we use a different set of words here, but they are so strongly linked semantically as to seem like tenses of a single term, one and first, second and two, three and third. Only the last, and those that follow, track with their sounds the meaning of the cardinal.
 
-Zero is the correct first.
+Zero is the correct first.  One, the correct second.  Etc.
 
-One is the correct second.
-
-And so on. This was not evident, to put it mildly. In the Occident, until comparatively recent times, Zero was unknown as a cardinal quantity, as decimal representation was similarly unknown. Its place as the origin of the natural numbers was not fully elucidated until the nineteenth century, and the zero-index remains a stumbling block for every student of computation. Who among us has not committed a fencepost error?
+This was not evident, to put it mildly. In the Occident, until comparatively recent times, Zero was unknown as a cardinal quantity, as decimal representation was similarly unknown. Its place as the origin of the natural numbers was not fully elucidated until the nineteenth century, and the zero index remains a stumbling block for every student of computation. Who among us has not committed a fencepost error?
 
 Zero's position as the first ordinal established, it has a cardinality also, denoting absence, but an absence which may be specific, as one may have no pebbles rather than nothing at all. This narrowing from Zero in the infinite to the original sense is evident from a glance at the hyperbolic graph. It is due to Zero's originality, that is, its use as the origin point of coordinate systems, that it was accepted as a natural number, and the prime ordinal.
 
@@ -390,7 +388,7 @@ I think it is fair to say, also, that purpose distinguishes computation from cal
 
 The Canaanites invented the \href{https://en.wikipedia.org/wiki/Alphabet}{connection} between marks and phonemes; they used these same marks, in a style adopted wholesale by the Greeks, to represent number. This style included no mark for nullity or void, and this absence of absence leaves traces in our minds and tongues. Yet \href{https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html}{Zero is a most natural number}, and it is the first.
 
-The trick of computation is in the nominal case. Yet the natural numbers retain their virtues proper to their ordering, and their cardinal virtues also. If we are to enumerate reductions upon a noun, let us make these reductions consonant to those virtues. That which is prior must precede that which comes after.
+The trick of computation is in the nominal case. Yet the natural numbers retain their virtues proper to their ordering, and their cardinal virtues also. If we are to enumerate reductions upon a noun, let us make these reductions consonant to those virtues. That which is prior must precede that which follows.
 
 \subsubsection{The Noun}
 
@@ -435,6 +433,7 @@ This \texttt{up} operation may be combined feasibly with \texttt{is}, thus:
 § [0 1 0 0]      →   1
 \end{lstlisting}
 
+\noindent
 In our first demonstration, the Zero which emerges from the reduction is the \emph{same} Zero as found in the rightmost place of the left hand noun. In this our \emph{second} demonstration, the One which is returned is \emph{not} the One found in the left hand term, but the ultimate Zero, acted upon by the penultimate Zero and incremented through the \texttt{up} operator, whose effect is, to increase by One the result of Axing upon the left and right nouns. The Zero in the origin, head, or left position plays no role beyond the structural.
 
 We clarify this with our third demonstration.
@@ -467,6 +466,7 @@ Such different creatures as the deer, trees, and coral reefs, have elements we c
 2: A cell is an ordered pair of nouns.
 \end{lstlisting}
 
+\noindent
 \texttt{branch} is the first operation to require the properties of a subjective cell, in the sense that the subject must be a cell for four of the reductions to succeed. The Zero operation requires nothing at all but a noun of phrasal structure, and the status of the subject is irrelevant. One requires that the result of Axing upon the subject and object succeed, and return an atom for incrementation, but the subject may be atomic, and the returned value must be.  \texttt{branch} also establishes the sense in which a pair of nouns is ordered.
 
 We now progress in our representation. Having the ability to generate all of the natural numbers, we pat our pockets, looking for a place to put them. Thing is, they get cumbersome if we just accumulate marks. The space is linear, we would prefer logarithmic, it's more compact. Binary is the simplest scheme after unary, this is why we use it.
@@ -479,6 +479,7 @@ Which brings us to the next demonstration:
 § [2 1 2 1]      →   3
 \end{lstlisting}
 
+\noindent
 In which we \texttt{up} \lstinline[style=inlinecode]{§ [2 2 1]}, in which Two selects Two, the whole (One) of the Subject. Yielding Three, thus.
 
 We see from this that One is the identity of the Two operation, returning the whole of the Subject. Is Zero, then, the annihilation of Two? It is precisely the inverse, and so, undefined.
@@ -526,6 +527,7 @@ I grant this is an \emph{option} yet it is one that leaves Two without a meaning
 § [a 0 b]        →   b
 \end{lstlisting}
 
+\noindent
 This states the general case of the \texttt{is} identity operator. Of which no more need be said.
 
 \subsubsection{The Second}
@@ -534,6 +536,7 @@ This states the general case of the \texttt{is} identity operator. Of which no m
 § [a 1 0 n]      →   n + 1
 \end{lstlisting}
 
+\noindent
 This line is part demonstration, part rule. I believe that a concrete demonstration of the order of operation in reducing an Ax string is useful, as the pattern of first Axing the subject and object before operating upon the result is not obvious upon first appraisal.
 
 This line is optional, a luxury, an aid to understanding.
@@ -635,6 +638,7 @@ Let us continue with this distributive operation, which also has a structural fo
 § [a [b c] d]    →   [§ [a b c] § [a d]]
 \end{lstlisting}
 
+\noindent
 with
 
 \begin{lstlisting}[style=listingcode]
@@ -672,9 +676,7 @@ The power of probability in computation is irrefutable. It is paradigmatic that 
 
 Reality itself exhibits this quality, in the form we refer to as quantum collapse. It is necessary to simulate this in a reproducible, bit-identical calculation, to model and abstract over calculations we believe to be efficient emulations of processes critical to life and intelligence.
 
-We represent luck with the number 5. It is a coin flip, a toss of the die, a short or long straw.
-
-In short, it is necessary to fair gambling, and other conditions when an event's total contribution to a computation is to be distributed but not harmonically.
+We represent luck with the number 5. It is a coin flip, a toss of the die, a short or long straw.  It is required for fair gambling and other conditions when an event's total contribution to a computation is to be distributed but not harmonically.
 
 This Schrödinger's bit we call `Red'. A difference between \texttt{branch 0} and the \texttt{flip} operation is that the former may return anything at all, hopefully well-formed, while the latter must return either \texttt{0} or \texttt{1}. Deriving this bit from a high-quality physical source of entropy cannot be compelled. It is highly recommended.
 
@@ -684,9 +686,9 @@ For probabilistic programming generally, it is the quality of being unpredictabl
 
 It is important to stress that the quality of novelty is particular and exists precisely in its unpredictable nature. If a computation is to be repeated, the choice must be made to either follow the path laid down by the previous ingression of novelty, or to discard it, in favor of a new path, perhaps more pleasing in some quality. Perhaps not.
 
-It is certainly possible to choose to represent only deterministic calculations, or worse, to treat entropy as a class of discovered information, delivered on a card like anything else. This underestimates its importance. It is Axiomatic that a 5 will return a fair toss, an implementation that cannot provide this feature on command is a failing case of an Ax machine. /dev/random is not optional. You can, of course, dummy it up and/or replay it, as long as you know what you're doing. It's your Ax, dude, jam on it.
+It is certainly possible to choose to represent only deterministic calculations, or worse, to treat entropy as a class of discovered information, delivered on a card like anything else. This underestimates its importance. It is Axiomatic that a 5 will return a fair toss, an implementation that cannot provide this feature on command is a failing case of an Ax machine. \texttt{/dev/random} is not optional. You can, of course, dummy it up and/or replay it, as long as you know what you're doing. It's your Ax, dude, jam on it.
 
-The engineers building immense tensor math rigs for various forms of machine learning are basically taking a \textsc{gpu} (this works because the math needed to simulate reality is, the math needed to simulate reality) and attaching an entropic firehose to it. They might be beefing it up with some pseudorandom tumbling scheme, I consider this bad engineering but I could get talked out of the insistence on just setting up a circuit with good noisy properties and listening in.\footnote{I don't know about the rest of you, but if I'm going to employ probabilistic inference to ride some kind of \href{https://en.wikipedia.org/wiki/The_Diamond_Age}{Stephensonesque} articulated chevalier, I'd like the activation thresholds to actually be driven by physically-generated randomness. Not that I have concrete plans, I'd just like to, eventually. Batteries are only getting smarter.
+The engineers building immense tensor math rigs for various forms of machine learning are basically taking a \textsc{gpu} (this works because the math needed to simulate reality is the math needed to simulate reality) and attaching an entropic firehose to it. They might be beefing it up with some pseudorandom tumbling scheme, I consider this bad engineering but I could get talked out of the insistence on just setting up a circuit with good noisy properties and listening in.\footnote{I don't know about the rest of you, but if I'm going to employ probabilistic inference to ride some kind of \href{https://en.wikipedia.org/wiki/The_Diamond_Age}{Stephensonesque} articulated chevalier, I'd like the activation thresholds to actually be driven by physically-generated randomness. Not that I have concrete plans, I'd just like to, eventually. Batteries are only getting smarter.
 
 I did spend a few months insisting that \texttt{flip}, until very recently \texttt{fuzz}, be based on atomic decay, entirely, and was talked down. I do try to listen when others are speaking.}
 
@@ -809,7 +811,7 @@ does not emulate this precisely, but the effect is much the same. I'm not sure I
 
 \subsubsection{Hint}
 
-This is a set of two expansions which do nothing, each in its own way.\footnote{Editor's note:  to wit, the hint operator, opcode \texttt{11} in Nock 4K.}  The Nock automaton takes a firm stance that neither input nor output are to be handled at the bottom layer.\footnote{Ultimately this is because down that road lie \href{https://wiki.haskell.org/Monad}{Monads}, and if you don't fear and distrust \href{https://en.wikipedia.org/wiki/Monad}{monads} in 2017 I wish I shared your jaunty mein.}
+This is a set of two expansions which do nothing, each in its own way.\footnote{Editor's note:  to wit, the hint operator, opcode \texttt{11} in Nock 4K.}  The Nock automaton takes a firm stance that neither input nor output are to be handled at the bottom layer.\footnote{Ultimately this is because down that road lie \href{https://wiki.haskell.org/Monad}{Monads}, and if you don't fear and distrust \href{https://en.wikipedia.org/wiki/Monad}{monads} in 2017 I wish I shared your jaunty mien.}
 
 This means that information is discovered within the subject on `cards', acted upon, and then cards are `released' into the wild, exiting the computation. The Ten operation, which shares its place in Nock and Ax, is not there used for this later `releasing'. Instead it is used for `hinting', a peculiar custom relating to jetting, which is not, peculiar that is, when you realize it's the familiar foreign function interface with a requirement that you write the entire library in the slow language as well. Jit and Jet are also caught by the pin-pen merger, which is droll.
 
@@ -887,5 +889,5 @@ The second is to indicate the path forward. Ax as a compiler target with a dicti
 That's Hoon, basically. At first, and rebuilt utterly below C level.
 
 \selectlanguage{USenglish}
-%\printbibliography
+\printbibliography
 \end{document}
